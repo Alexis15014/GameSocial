@@ -146,7 +146,6 @@ class Usuario{
             ':password' => $hash
         ]);
     }
-
 	
 
 }
