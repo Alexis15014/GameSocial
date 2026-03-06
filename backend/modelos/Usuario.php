@@ -146,6 +146,15 @@ class Usuario{
             ':password' => $hash
         ]);
     }
-	
+
+	// Guardamos el token de persistencia para la función "Recordarme".
+	public function guardarTokenRecordarme($id_usuario, $token) {
+	    $sql = "UPDATE usuarios SET token_recordarme = :token WHERE id_usuario = :id";
+	    $stmt = $this->conexion->prepare($sql);
+	    return $stmt->execute([
+	        ':token' => $token,
+	        ':id'    => $id_usuario
+	    ]);
+	}
 
 }
