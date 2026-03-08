@@ -1,0 +1,2343 @@
+/* ================================
+   FUENTES Y COLORES GENERALES
+   ================================ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+/* Reset y base - combinando todas las declaraciones */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #F5F5F5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* ================================
+   BARRA DE NAVEGACIÓN - TODOS LOS ESTILOS
+   ================================ */
+.barra-navegacion {
+    background-color: #1F1B24;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Marca/Logo */
+.marca {
+    color: #6E48AA;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.marca:hover {
+    color: #FF4C4C;
+}
+
+/* Logo imagen */
+.logo-navbar {
+    height: 60px;
+    width: auto;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+@media (max-width: 992px) {
+    .logo-navbar {
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-navbar {
+        height: 35px;
+        margin-right: 6px;
+    }
+}
+
+/* Enlaces de navegación */
+.enlace-nav {
+    margin-right: 15px;
+    color: #F5F5F5;
+    font-weight: 500;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.enlace-nav:hover {
+    color: #FF4C4C;
+}
+
+/* ================================
+   BUSCADOR NAVBAR - TODOS LOS ESTILOS
+   ================================ */
+.form-buscador {
+    max-width: 220px;
+}
+
+.input-buscador {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.input-buscador::placeholder {
+    color: #aaa;
+}
+
+.input-buscador:focus {
+    background-color: #1f1f1f;
+    color: #fff;
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+@media (max-width: 992px) {
+    .form-buscador {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* ================================
+   DROPDOWN NOTIFICACIONES - TODOS LOS ESTILOS
+   ================================ */
+.desplegable-notificaciones {
+    width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #1F1B24;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #F5F5F5;
+}
+
+.elemento-notificacion {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2A2430;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.elemento-notificacion:hover {
+    background-color: #3E2D50;
+    transform: translateX(5px);
+}
+
+.elemento-notificacion small.mensaje {
+    display: block;
+    color: #F5F5F5;
+}
+
+.elemento-notificacion small.fecha {
+    display: block;
+    color: #B0B0B0;
+    font-size: 0.75rem;
+}
+
+.elemento-notificacion a {
+    color: #F5F5F5;
+    text-decoration: none;
+}
+
+.elemento-notificacion a:hover {
+    color: #FF4C4C;
+}
+
+.acciones-notificacion a {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+.badge-notificacion {
+    background-color: #FF4C4C;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}
+
+.dropdown-divider {
+    border-color: #3E2D50;
+}
+
+/* ================================
+   BOTONES - TODOS LOS ESTILOS (CORREGIDOS)
+   ================================ */
+
+/* Base para todos los botones - elimina subrayado */
+button, 
+.btn, 
+.btn-success, 
+.btn-danger, 
+.btn-detalle, 
+.btn-busqueda, 
+.btn-estado, 
+.btn-responder, 
+.btn-like, 
+.btn-primary, 
+.btn-eliminar, 
+.btn-cambiar-rol, 
+.btn-guardar, 
+.btn-cancelar, 
+.btn-biografia, 
+.btn-filtro, 
+.btn-outline-purple, 
+.btn-secondary, 
+.btn-unfollow, 
+.btn-buscador, 
+.btn-limpiar, 
+.gamesocial-btn,
+a.btn,
+a.btn-success,
+a.btn-danger,
+a.btn-detalle,
+a.btn-busqueda,
+a.btn-estado,
+a.btn-responder,
+a.btn-like,
+a.btn-primary,
+a.btn-eliminar,
+a.btn-cambiar-rol,
+a.btn-guardar,
+a.btn-cancelar,
+a.btn-biografia,
+a.btn-filtro,
+a.btn-outline-purple,
+a.btn-secondary,
+a.btn-unfollow,
+a.btn-buscador,
+a.btn-limpiar,
+a.gamesocial-btn {
+    text-decoration: none !important;
+}
+
+/* Botón success - versión 1 (morado) - TAMAÑO CORREGIDO */
+.btn-success {
+    background-color: #6E48AA;
+    border-color: #6E48AA;
+    font-size: 0.85rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(110,72,170,0.6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-success:hover {
+    background-color: #8C5ED6;
+    border-color: #8C5ED6;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(140,94,214,0.8);
+}
+
+/* Botón danger - rojo - TAMAÑO CORREGIDO */
+.btn-danger {
+    background-color: #FF4C4C;
+    border-color: #FF4C4C;
+    font-size: 0.85rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(255,76,76,0.6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-danger:hover {
+    background-color: #FF6A6A;
+    border-color: #FF6A6A;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255,106,106,0.8);
+}
+
+/* Botón detalle - versión múltiple - TAMAÑO CORREGIDO */
+.btn-detalle {
+    background-color: #6E48AA;
+    border-color: #6E48AA;
+    color: #fff;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(110,72,170,0.6);
+    border-radius: 8px;
+    padding: 8px 16px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-detalle:hover {
+    background-color: #8C5ED6;
+    border-color: #8C5ED6;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(140,94,214,0.8);
+}
+
+/* Botón búsqueda - amarillo */
+.btn-busqueda, .btn-reset{
+    background-color: #FBB040;
+    border-color: #FBB040;
+    color: #1F1B24;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(251,176,64,0.6);
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-busqueda:hover, .btn-reset:hover {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255,200,87,0.6);
+}
+
+/* Botón estado */
+.btn-estado {
+    color: #fff;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding: 10px 16px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-estado.inactivo {
+    background-color: #2A2430;
+    border: 1px solid #6E48AA;
+    opacity: 0.7;
+}
+
+.btn-estado.activo {
+    background-color: #6E48AA;
+    border: 1px solid #9D72E9;
+    box-shadow: 0 0 15px rgba(110,72,170,0.4);
+    transform: translateY(-2px);
+}
+
+.btn-estado.inactivo:hover {
+    background-color: #3E2D50;
+    opacity: 1;
+}
+
+/* Botón responder */
+.btn-responder {
+    background-color: #FBB040;
+    color: #1F1B24;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-responder:hover {
+    background-color: #FFC857;
+    transform: scale(1.05);
+}
+
+/* Botón like */
+.btn-like {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: #FF4C4C;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    display: inline-block;
+    text-align: center;
+    min-width: 60px;
+}
+
+.btn-like:hover {
+    background: rgba(255,76,76,0.1);
+    border-color: #FF4C4C;
+}
+
+/* Botón primario */
+.btn-primary {
+    background-color: #6E48AA;
+    border-color: #6E48AA;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #8C5ED6;
+    border-color: #8C5ED6;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(140,94,214,0.8);
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background-color: #D9534F;
+    border-color: #D9534F;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-eliminar:hover {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255,107,107,0.6);
+}
+
+/* Botón cambiar rol */
+.btn-cambiar-rol {
+    background-color: #FBB040;
+    border-color: #FBB040;
+    color: #1F1B24;
+    font-weight: 500;
+    margin-right: 0.3rem;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.btn-cambiar-rol:hover {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255,200,87,0.6);
+}
+
+/* Botón guardar */
+.btn-guardar {
+    flex: 1;
+    padding: 10px 16px;
+    background-color: #FBB040;
+    border: 1px solid #FBB040;
+    color: #1F1B24;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.btn-guardar:hover {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,200,87,0.4);
+}
+
+/* Botón cancelar */
+.btn-cancelar {
+    flex: 1;
+    padding: 10px 16px;
+    background-color: #D9534F;
+    border: 1px solid #D9534F;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.btn-cancelar:hover {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(255,107,107,0.4);
+}
+
+/* Botón biografía */
+.btn-biografia {
+    background-color: #FBB040;
+    border: none;
+    color: #1F1B24;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 12px 25px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+}
+
+.btn-biografia:hover {
+    background-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(251,176,64,0.4);
+}
+
+/* Botón filtro */
+.btn-filtro {
+    background-color: #2A2430;
+    border: 1px solid #3E2D50;
+    color: #9D72E9;
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-filtro:hover {
+    background-color: #6E48AA;
+    color: #fff;
+    border-color: #9D72E9;
+    transform: scale(1.05);
+}
+
+/* Botón outline morado */
+.btn-outline-purple {
+    border: 1px solid #6E48AA;
+    color: #6E48AA;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-outline-purple:hover {
+    background-color: #6E48AA;
+    color: #FFFFFF;
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: #3E2D50;
+    border-color: #3E2D50;
+    color: #F5F5F5;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s;
+    padding: 8px 16px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-secondary:hover {
+    background-color: #6E48AA;
+    border-color: #6E48AA;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(110,72,170,0.6);
+}
+
+/* Botón unfollow */
+.btn-unfollow {
+    background-color: #3E2D50;
+    border: 1px solid #6E48AA;
+    color: #F5F5F5;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-unfollow:hover {
+    background-color: #6E48AA;
+}
+
+/* Botón buscador (morado) */
+.btn-buscador {
+    background-color: #6e48aa;
+    border-color: #6e48aa;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px rgba(110,72,170,0.6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btn-buscador:hover {
+    background-color: #8c5ed6;
+    border-color: #8c5ed6;
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px rgba(140,94,214,0.8);
+}
+
+/* Botón limpiar - múltiples variantes */
+.btn-limpiar {
+    background-color: #3E2D50;
+    color: #FF4C4C;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 1px solid #6E48AA;
+    transition: 0.3s;
+    height: 100%;
+    min-height: 38px;
+}
+
+.btn-limpiar:hover {
+    background-color: #FF4C4C;
+    color: white;
+}
+
+/* Botón gamesocial */
+.gamesocial-btn {
+    background-color: #6E48AA;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 12px 20px;
+    font-weight: 600;
+    border: none;
+    width: 100%;
+    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.gamesocial-btn:hover {
+    background-color: #8C5ED6;
+    box-shadow: 0 0 10px rgba(140,94,214,0.5);
+    transform: translateY(-2px);
+}
+
+/* ================================
+   TARJETAS - TODOS LOS ESTILOS (CADA SELECTOR ÚNICO)
+   ================================ */
+
+/* Tarjeta videojuego - versión catálogo */
+.tarjeta-videojuego {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #1F1B24;
+    color: #F5F5F5;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta-videojuego:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110,72,170,0.6);
+}
+
+/* Tarjeta videojuego - versión mis juegos */
+.mis-juegos-container .tarjeta-videojuego {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 10px;
+    color: #F5F5F5;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mis-juegos-container .tarjeta-videojuego:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110,72,170,0.6);
+}
+
+/* Tarjeta videojuego - versión catálogo contenedor */
+.contenedor-catalogo .tarjeta-videojuego {
+    display: flex;
+    flex-direction: column;
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.contenedor-catalogo .tarjeta-videojuego:hover {
+    transform: translateY(-10px);
+    border-color: #6E48AA;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(110,72,170,0.3);
+}
+
+/* Usuario card */
+.usuario-card {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    padding: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.usuario-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110,72,170,0.6);
+}
+
+/* Post card */
+.post-card {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #F5F5F5;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(110,72,170,0.4);
+}
+
+/* Tarjeta logro */
+.tarjeta-logro {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    color: #F5F5F5;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tarjeta-logro:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: #FBB040;
+    box-shadow: 0 10px 25px rgba(110,72,170,0.5);
+}
+
+/* Tarjeta logro - perfil */
+.perfil-container .tarjeta-logro {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 10px;
+    color: #F5F5F5;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-container .tarjeta-logro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110,72,170,0.6);
+    border-color: #6E48AA;
+}
+
+/* Tarjeta logro - perfil privado */
+.perfil-privado-container .tarjeta-logro {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 10px;
+    color: #F5F5F5;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 1rem;
+}
+
+.perfil-privado-container .tarjeta-logro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110,72,170,0.6);
+}
+
+/* Item usuario card */
+.item-usuario-card {
+    background-color: #2A2430;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.2s ease;
+}
+
+.item-usuario-card:hover {
+    transform: translateX(5px);
+    border-color: #6E48AA;
+    background-color: #322A3A;
+}
+
+/* Card publicar */
+.card-publicar {
+    background-color: #1F1B24;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #3E2D50;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Gamesocial card */
+.gamesocial-card {
+    background-color: #1F1B24;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(110,72,170,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gamesocial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(140,94,214,0.5);
+}
+
+/* ================================
+   IMÁGENES Y WRAPPERS - TODOS LOS ESTILOS
+   ================================ */
+
+/* Imagen tarjeta */
+.imagen-tarjeta {
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Imagen wrapper - mis juegos */
+.mis-juegos-container .imagen-wrapper {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #0f0f14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagen wrapper - catálogo */
+.contenedor-catalogo .imagen-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #0f0f14;
+}
+
+/* Imagen tarjeta - mis juegos */
+.mis-juegos-container .imagen-tarjeta {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    transition: transform 0.3s ease;
+}
+
+.mis-juegos-container .tarjeta-videojuego:hover .imagen-tarjeta {
+    transform: scale(1.1);
+}
+
+/* Imagen tarjeta - catálogo */
+.contenedor-catalogo .imagen-tarjeta {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.6s ease;
+}
+
+.contenedor-catalogo .tarjeta-videojuego:hover .imagen-tarjeta {
+    transform: scale(1.1);
+}
+
+/* Imagen videojuego */
+.imagen-videojuego {
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease;
+}
+
+.imagen-videojuego:hover {
+    transform: scale(1.02);
+}
+
+/* Overlay fecha - catálogo */
+.contenedor-catalogo .overlay-fecha {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(110,72,170,0.9);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    z-index: 5;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Overlay fecha - mis juegos */
+.mis-juegos-container .overlay-fecha {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #6E48AA, #4B307A);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ================================
+   AVATARES - TODOS LOS ESTILOS
+   ================================ */
+
+/* Avatar usuario */
+.avatar-usuario {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #6E48AA;
+}
+
+/* Avatar usuario - contenedor búsqueda */
+.contenedor-busqueda .avatar-usuario {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border: 2px solid #6E48AA;
+    padding: 2px;
+}
+
+/* Avatar post */
+.avatar-post {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #6E48AA;
+}
+
+/* Avatar wrapper */
+.avatar-usuario-wrapper {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.avatar-post-wrapper {
+    width: 50px;
+    height: 50px;
+}
+
+/* Imagen perfil círculo */
+.img-perfil-circulo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #6E48AA;
+    padding: 5px;
+    background: #1F1B24;
+}
+
+@media (max-width: 576px) {
+    .img-perfil-circulo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* ================================
+   BADGES - TODOS LOS ESTILOS
+   ================================ */
+
+/* Badge notificación */
+.badge-notificacion {
+    background-color: #FF4C4C;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}
+
+/* Badge - mis juegos */
+.mis-juegos-container .badge {
+    font-size: 0.75rem;
+    text-transform: capitalize;
+    padding: 5px 8px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
+
+/* Badge estados */
+.bg-estado-pendiente {
+    background-color: #2A2430;
+    color: #F5F5F5;
+    background: linear-gradient(135deg, #3E2D50, #2A1F36);
+}
+
+.bg-estado-progreso {
+    background-color: #6E48AA;
+    color: #fff;
+    background: linear-gradient(135deg, #6E48AA, #4B307A);
+}
+
+.bg-estado-finalizado {
+    background-color: #FBB040;
+    color: #1F1B24;
+    background: linear-gradient(135deg, #FBB040, #D9952B);
+}
+
+/* Badge admin */
+.badge-admin {
+    background-color: #dc3545;
+    font-size: 0.6rem;
+    padding: 4px 6px;
+    vertical-align: middle;
+    color: #fff;
+    border-radius: 6px;
+}
+
+/* Badge rol */
+.badge-rol {
+    font-size: 0.65rem;
+    padding: 0.25em 0.45em;
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 6px;
+}
+
+/* Rol usuario */
+.rol-usuario {
+    background-color: #6E48AA;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+/* ================================
+   TÍTULOS Y TEXTOS - TODOS LOS ESTILOS
+   ================================ */
+
+/* Título catálogo */
+.catalogo-titulo {
+    color: #6E48AA;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+}
+
+.contenedor-catalogo .catalogo-titulo {
+    color: #6E48AA;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Título tarjeta */
+.titulo-tarjeta {
+    color: #F5F5F5;
+    font-weight: 600;
+}
+
+.contenedor-catalogo .titulo-tarjeta {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.mis-juegos-container .titulo-tarjeta {
+    font-weight: 600;
+    color: #F5F5F5;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.mis-juegos-container .contenedor-estado{
+	display: flex;
+	justify-content: center;
+}
+
+/* Título videojuego */
+.titulo-videojuego {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6E48AA;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(110,72,170,0.3);
+    text-align: center;
+}
+
+/* Título panel */
+.titulo-panel {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6E48AA;
+    font-size: 2rem;
+}
+
+/* Título búsqueda */
+.titulo-busqueda {
+    color: #6E48AA;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* Gamesocial perfil title */
+.gamesocial-perfil-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6E48AA;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Gamesocial title */
+.gamesocial-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #FBB040;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Feed título */
+.feed-titulo {
+    color: #6E48AA;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Subtítulo panel */
+.subtitulo-panel {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    color: #FBB040;
+    margin-bottom: 1rem;
+}
+
+/* Section subtitle */
+.section-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    color: #FBB040;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Gamesocial login title */
+.gamesocial-login-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #FBB040;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Nombre usuario link */
+.nombre-usuario-link {
+    color: #9D72E9;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
+}
+
+.nombre-usuario-link:hover {
+    color: #FBB040;
+    text-decoration: none;
+}
+
+/* Nombre usuario */
+.nombre-usuario {
+    color: #F5F5F5;
+    font-weight: 600;
+}
+
+/* Email usuario */
+.email-usuario {
+    color: #B0B0B0;
+    font-size: 0.8rem;
+}
+
+/* Post autor */
+.post-autor {
+    color: #FBB040;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Stat highlight */
+.stat-highlight {
+    color: #FBB040;
+    font-size: 1.1rem;
+}
+
+/* ================================
+   COMENTARIOS - TODOS LOS ESTILOS
+   ================================ */
+
+/* Comentario */
+.comentario {
+    background-color: #2A2430;
+    border-radius: 10px;
+    border: 1px solid #3E2D50;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Post y reply */
+.post, .reply {
+    background-color: #2A2430;
+    border: 1px solid #3E2D50;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.post:hover {
+    border-color: #6E48AA;
+}
+
+.reply {
+    background-color: #1F1B24;
+    border-left: 3px solid #6E48AA;
+    margin-left: 20px;
+}
+
+/* Cabecera comentario */
+.cabecera-comentario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 12px;
+}
+
+.cabecera-comentario .usuario {
+    font-weight: 700;
+    color: #9D72E9;
+}
+
+.cabecera-comentario .meta {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Cuerpo comentario */
+.cuerpo-comentario {
+    color: #E0E0E0;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+/* En respuesta */
+.en-respuesta {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #D8C2FF;
+    background: rgba(110,72,170,0.15);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(110,72,170,0.3);
+}
+
+/* Acciones comentario */
+.acciones-comentario {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Respuestas */
+.respuestas {
+    margin-top: 15px;
+    padding-left: 20px;
+    border-left: 2px solid #3E2D50;
+}
+
+/* Niveles */
+.nivel-1 { margin-left: 15px; }
+.nivel-2 { margin-left: 30px; }
+.nivel-3 { margin-left: 45px; }
+.nivel-4 { margin-left: 60px; }
+
+/* ================================
+   FORMULARIOS E INPUTS - TODOS LOS ESTILOS
+   ================================ */
+
+/* Input búsqueda */
+.input-busqueda {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #3E2D50;
+    background-color: #2A2433;
+    color: #F5F5F5;
+    transition: all 0.2s ease;
+}
+
+.input-busqueda::placeholder {
+    color: #AAAAAA;
+}
+
+.input-busqueda:focus {
+    background-color: #3E2D50;
+    border-color: #6E48AA;
+    box-shadow: 0 0 6px rgba(110,72,170,0.5);
+    color: #fff;
+    outline: none;
+}
+
+/* Input buscador - admin */
+.videojuegos-container .form-buscador .input-buscador {
+    flex: 1;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.videojuegos-container .form-buscador .input-buscador:focus {
+    outline: none;
+    border-color: #6e48aa;
+    box-shadow: 0 0 6px rgba(110,72,170,0.4);
+}
+
+/* Input videojuego */
+.input-videojuego,
+.textarea-videojuego {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #3E2D50;
+    border-radius: 8px;
+    background-color: #2B2435;
+    color: #F5F5F5;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.input-videojuego:focus,
+.textarea-videojuego:focus {
+    outline: none;
+    border-color: #6E48AA;
+    box-shadow: 0 0 5px rgba(110,72,170,0.6);
+    background-color: #2F263A;
+}
+
+/* Gamesocial input */
+.gamesocial-input {
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #3E2D50;
+    background-color: #2A2433;
+    color: #F5F5F5;
+    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+}
+
+.gamesocial-input:focus {
+    outline: none;
+    border-color: #6E48AA;
+    box-shadow: 0 0 0 0.2rem rgba(110,72,170,0.3);
+    background-color: #2F263A;
+    color: #fff;
+}
+
+/* Form control - login */
+.login-card .form-control {
+    background-color: #2A2433;
+    border: 1px solid #3E2D50;
+    color: #F5F5F5;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+.login-card .form-control::placeholder {
+    color: #CCCCCC;
+    opacity: 1;
+}
+
+/* Biografía textarea */
+.biografia-textarea {
+    max-width: 100%;
+    border-color: #3E2D50;
+    line-height: 1.6;
+    background-color: #2A2433;
+    color: #F5F5F5;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Archivo avatar */
+.archivo-avatar {
+    max-width: 250px;
+    margin-bottom: 0;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #3E2D50;
+    background-color: #2A2433;
+    color: #F5F5F5;
+    box-sizing: border-box;
+}
+
+/* Form check */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-check-input {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #2A2433;
+    border: 1px solid #3E2D50;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #FBB040;
+    border-color: #FBB040;
+}
+
+.form-check-label {
+    color: #F5F5F5;
+    font-weight: 500;
+    margin-left: 0.3rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.form-check-label:hover {
+    color: #FFC857;
+}
+
+/* Input group */
+.input-busqueda-group {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+}
+
+.videojuegos-container .form-buscador .input-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+/* ================================
+   LOGIN Y REGISTRO - TODOS LOS ESTILOS
+   ================================ */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #1F1B24;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.login-card h3 {
+    color: #F5F5F5;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.gamesocial-registro-container {
+    padding: 2rem 0;
+    background-color: #121212;
+}
+
+/* ================================
+   ALERTAS - TODOS LOS ESTILOS
+   ================================ */
+
+.alert {
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.alert-danger {
+    background-color: #FF4C4C;
+    color: #fff;
+}
+
+.alert-success {
+    background-color: #6E48AA;
+    color: #fff;
+}
+
+.gamesocial-alert {
+    font-size: 0.9rem;
+    text-align: center;
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.alert-busqueda-vacia {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    padding: 20px;
+    border-radius: 12px;
+    color: #F5F5F5;
+}
+
+/* ================================
+   PÁGINAS ESPECÍFICAS - CONTENEDORES
+   ================================ */
+
+.catalogo-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.contenedor-detalle {
+    padding-bottom: 2rem;
+}
+
+.contenedor-feed {
+    padding-bottom: 2rem;
+}
+
+.mis-juegos-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.mis-juegos-container h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6E48AA;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.perfil-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.perfil-privado-container {
+    padding-bottom: 4rem;
+    padding-top: 2rem;
+}
+
+.perfil-privado-container h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #6E48AA;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.perfil-privado-container h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #F5F5F5;
+    margin-bottom: 1rem;
+}
+
+.contenedor-busqueda {
+    max-width: 800px;
+    padding-bottom: 3rem;
+}
+
+.panel-admin-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: #F5F5F5;
+}
+
+.videojuegos-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: #F5F5F5;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.videojuegos-container h2 {
+    font-weight: 700;
+    color: #6E48AA;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.panel-videojuego {
+    padding: 2rem 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(110,72,170,0.3);
+    color: #F5F5F5;
+}
+
+/* ================================
+   GRIDS Y LAYOUTS
+   ================================ */
+
+.usuarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* ================================
+   TABLAS
+   ================================ */
+
+.videojuegos-container table {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.videojuegos-container thead {
+    background-color: #3E2D50;
+}
+
+.videojuegos-container thead th {
+    color: #FBB040;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem;
+}
+
+.videojuegos-container tbody tr {
+    border-bottom: 1px solid #3E2D50;
+    transition: background-color 0.2s;
+}
+
+.videojuegos-container tbody tr:hover {
+    background-color: rgba(110,72,170,0.25);
+}
+
+.videojuegos-container tbody td {
+    color: #b8abab;
+    vertical-align: middle;
+    padding: 0.6rem 1rem;
+}
+
+.videojuegos-container td,
+.videojuegos-container th {
+    font-size: 0.95rem;
+}
+
+/* ================================
+   FILTROS Y SECCIONES
+   ================================ */
+
+.filtros-seccion {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+}
+
+.border-end-divider {
+    border-right: 1px solid #3E2D50;
+}
+
+.border-purple {
+    border: 1px solid #3E2D50 !important;
+}
+
+.border-purple-dark {
+    border-color: #3E2D50 !important;
+}
+
+.bg-purple {
+    background-color: #6E48AA;
+}
+
+/* ================================
+   TEXTOS DE TARJETA
+   ================================ */
+
+.texto-tarjeta.plataforma,
+.texto-tarjeta.fecha {
+    color: #B0B0B0;
+}
+
+.texto-tarjeta.fecha {
+    font-size: 0.75rem;
+}
+
+/* ================================
+   ESTRELLAS
+   ================================ */
+
+.estrella {
+    font-size: 1.1rem;
+    margin-right: 2px;
+}
+
+.estrella.activa {
+    color: #FFC857;
+    text-shadow: 0 0 8px rgba(255,200,87,0.6);
+}
+
+.estrella.inactiva {
+    color: #3E2D50;
+}
+
+.text-warning {
+    color: #FFC857 !important;
+}
+
+.text-muted {
+    color: #AAAAAA !important;
+}
+
+.text-purple {
+    color: #9D72E9;
+}
+
+/* ================================
+   ICONOS LOGRO
+   ================================ */
+
+.icono-logro {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.perfil-privado-container .icono-logro {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 5px rgba(251,176,64,0.5));
+}
+
+.perfil-container .icono-logro {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+/* ================================
+   NOMBRE LOGRO
+   ================================ */
+
+.nombre-logro {
+    color: #F5F5F5;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+}
+
+.perfil-privado-container .nombre-logro {
+    display: block;
+    color: #FBB040;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-container .nombre-logro {
+    color: #F5F5F5;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ================================
+   DESCRIPCIÓN LOGRO
+   ================================ */
+
+.descripcion-logro {
+    color: #B0B0B0;
+    line-height: 1.3;
+    font-size: 0.75rem;
+}
+
+/* ================================
+   CUERPO TARJETA
+   ================================ */
+
+.mis-juegos-container .cuerpo-tarjeta {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================================
+   POST CONTENIDO
+   ================================ */
+
+.post-contenido {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #F5F5F5;
+    text-align: center;
+    margin-top: 0.5rem;
+    word-break: break-word;
+}
+
+/* ================================
+   BIOGRAFÍA USUARIO
+   ================================ */
+
+.biografia-usuario {
+    font-size: 0.85rem;
+    color: #AAAAAA;
+    line-height: 1.4;
+}
+
+/* ================================
+   LINKS
+   ================================ */
+
+.gamesocial-link {
+    color: #FBB040;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.gamesocial-link:hover {
+    text-decoration: underline;
+    color: #FFC857;
+}
+
+.footer-link {
+    display: inline-block;
+    color: #FBB040;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #1F1B24;
+    background-color: #FBB040;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* ================================
+   FORMULARIO VIDEOJUEGO
+   ================================ */
+
+.form-videojuego {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.label-videojuego {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #FBB040;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* ================================
+   FORMULARIO RESPUESTA
+   ================================ */
+
+.form-respuesta {
+    margin-top: 8px;
+}
+
+.form-respuesta textarea {
+    background-color: #1F1B24;
+    color: #fff;
+    border: 1px solid #3E2D50;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.form-respuesta textarea:focus {
+    border-color: #6E48AA;
+    outline: none;
+    box-shadow: 0 0 5px rgba(110,72,170,0.5);
+}
+
+/* ================================
+   FORMULARIO BÚSQUEDA
+   ================================ */
+
+.form-busqueda {
+    display: flex;
+    justify-content: center;
+}
+
+/* ================================
+   INFO VIDEOJUEGO
+   ================================ */
+
+.info-videojuego,
+.estado-valoracion {
+    background-color: #1F1B24;
+    border: 1px solid #3E2D50;
+    border-radius: 12px;
+    color: #F5F5F5;
+}
+
+/* ================================
+   ACCIONES CARD
+   ================================ */
+
+.acciones-card .btn-cambiar-rol {
+    background-color: #FBB040;
+    border-color: #FBB040;
+    color: #1F1B24;
+    font-weight: 500;
+    margin-right: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.acciones-card .btn-cambiar-rol:hover {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255,200,87,0.6);
+}
+
+.acciones-card .btn-eliminar {
+    background-color: #D9534F;
+    border-color: #D9534F;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.acciones-card .btn-eliminar:hover {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255,107,107,0.6);
+}
+
+/* ================================
+   POST CARD ESPECÍFICO
+   ================================ */
+
+.post-card .btn-eliminar {
+    margin-top: 0.8rem;
+    width: 100%;
+    text-align: center;
+    background-color: #D9534F;
+    border-color: #D9534F;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.post-card .btn-eliminar:hover {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    transform: translateY(-1px);
+    box-shadow: 0 0 8px rgba(255,107,107,0.5);
+}
+
+/* ================================
+   VIDEOJUEGOS CONTAINER ESPECÍFICO
+   ================================ */
+
+.videojuegos-container .btn-success {
+    background-color: #FBB040;
+    border-color: #FBB040;
+    color: #1F1B24;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.videojuegos-container .btn-success:hover {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255,200,87,0.6);
+}
+
+.videojuegos-container .btn-primary {
+    background-color: #6E48AA;
+    border-color: #6E48AA;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.videojuegos-container .btn-primary:hover {
+    background-color: #7F5FCC;
+    border-color: #7F5FCC;
+    transform: translateY(-1px);
+    box-shadow: 0 0 8px rgba(127,95,204,0.5);
+}
+
+.videojuegos-container .btn-danger {
+    background-color: #D9534F;
+    border-color: #D9534F;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.videojuegos-container .btn-danger:hover {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    transform: translateY(-1px);
+    box-shadow: 0 0 8px rgba(255,107,107,0.5);
+}
+
+/* ================================
+   FORM BUSCADOR ESPECÍFICO
+   ================================ */
+
+.videojuegos-container .form-buscador {
+    margin-bottom: 2rem;
+}
+
+.videojuegos-container .input-busqueda-group .btn-limpiar {
+    background-color: #3e2d50;
+    color: #ff4c4c;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 1px solid #6e48aa;
+    transition: all 0.3s ease;
+}
+
+.videojuegos-container .input-busqueda-group .btn-limpiar:hover {
+    background-color: #ff4c4c;
+    color: white;
+    box-shadow: 0 0 10px rgba(255,76,76,0.5);
+}
+
+/* ================================
+   PANEL ADMIN BUSCADOR
+   ================================ */
+
+.panel-admin-container .form-busqueda .btn-limpiar {
+    background-color: #3E2D50;
+    color: #FF4C4C;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 1px solid #6E48AA;
+    transition: 0.3s;
+}
+
+.panel-admin-container .form-busqueda .btn-limpiar:hover {
+    background-color: #FF4C4C;
+    color: white;
+}
+
+/* ================================
+   FOOTER GLOBAL - TODOS LOS ESTILOS
+   ================================ */
+
+.footer-global {
+    background-color: #1F1B24;
+    color: #F5F5F5;
+    font-family: 'Orbitron', sans-serif;
+    border-top: 2px solid #6E48AA;
+    font-size: 0.9rem;
+    width: 100%;
+    padding: 1.5rem 0;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.footer-global .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .footer-global .container {
+        flex-direction: row;
+    }
+}
+
+.footer-global .footer-left {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer-global .footer-left {
+        text-align: left;
+    }
+}
+
+.footer-global .footer-right {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer-global .footer-right {
+        text-align: right;
+    }
+}
+
+.footer-global .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+}
+
+.footer-global .footer-logo-img {
+    height: 30px;
+    width: auto;
+}
+
+.footer-global .footer-logo span {
+    color: #FBB040;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.footer-global .footer-left span {
+    display: block;
+    color: #F5F5F5;
+    font-size: 0.85rem;
+}
+
+.footer-global a.footer-link {
+    display: inline-block;
+    color: #FBB040;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.footer-global a.footer-link:hover {
+    color: #1F1B24;
+    background-color: #FBB040;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* ================================
+   RESPONSIVE - TODOS LOS MEDIA QUERIES
+   ================================ */
+
+@media (max-width: 992px) {
+    .form-buscador {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    .logo-navbar {
+        height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .imagen-videojuego {
+        max-height: 300px;
+    }
+    .respuestas {
+        padding-left: 10px;
+    }
+    .border-end-divider {
+        border-right: none;
+        border-bottom: 1px solid #3E2D50;
+        padding-bottom: 1rem;
+    }
+    .footer-global .container {
+        flex-direction: row;
+    }
+    .footer-global .footer-left {
+        text-align: left;
+    }
+    .footer-global .footer-right {
+        text-align: right;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-navbar {
+        height: 35px;
+        margin-right: 6px;
+    }
+    .input-busqueda-group {
+        flex-direction: column;
+    }
+    .input-busqueda,
+    .btn-busqueda {
+        width: 100%;
+        border-radius: 8px;
+    }
+    .btn-busqueda {
+        margin-top: 0.5rem;
+    }
+    .comentario {
+        padding: 10px;
+    }
+    .cabecera-comentario {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .nivel-1, .nivel-2, .nivel-3, .nivel-4 {
+        margin-left: 10px;
+    }
+    .post, .reply {
+        padding: 10px;
+    }
+    .login-card {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    .gamesocial-perfil-title {
+        font-size: 1.8rem;
+    }
+    .perfil-container .btn-detalle {
+        width: 100%;
+        text-align: center;
+    }
+    .btn-biografia {
+        width: 100%;
+    }
+    .img-perfil-circulo {
+        width: 120px;
+        height: 120px;
+    }
+    .gamesocial-card {
+        padding: 1.5rem;
+    }
+    .gamesocial-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ================================
+   UTILIDADES GENERALES
+   ================================ */
+
+.text-center {
+    text-align: center;
+}
