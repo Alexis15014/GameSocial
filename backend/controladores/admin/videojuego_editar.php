@@ -1,47 +1,44 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: /gamesocial/backend/controladores/login.php");
-    exit;
-}
+/**
+ * Controlador: admin/videojuego_editar.php
+ * Propósito: Procesar la edición de un videojuego existente desde el panel admin.
+ * Proyecto: GameSocial
+ */
 
 require_once __DIR__ . '/../../config/conexion.php';
+require_once __DIR__ . '/../../helpers/auth.php';
+require_once __DIR__ . '/../../helpers/videojuego_admin.php';
 
-$id = $_GET['id'] ?? null;
-if (!$id) die("ID no válido");
+requiereAdmin($conexion);
+
+$id_videojuego = $_GET['id'] ?? null;
+if (!$id_videojuego) {
+    die("ID de videojuego no válido.");
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tipos_validos = ['juego_base', 'dlc', 'expansion', 'edicion_especial', 'remake', 'remaster'];
-    $tipo = in_array($_POST['tipo'] ?? '', $tipos_validos) ? $_POST['tipo'] : 'juego_base';
+    $datos        = obtenerDatosFormulario();
+    $datos[':id'] = $id_videojuego;
 
     $stmt = $conexion->prepare(
         "UPDATE videojuegos
-         SET titulo = ?, descripcion = ?, plataforma = ?, genero = ?, 
-             fecha_lanzamiento = ?, desarrolladora = ?, tipo = ?
-         WHERE id_videojuego = ?"
+         SET titulo = :titulo, descripcion = :descripcion, plataforma = :plataforma,
+             genero = :genero, fecha_lanzamiento = :fecha_lanzamiento,
+             desarrolladora = :desarrolladora, tipo = :tipo
+         WHERE id_videojuego = :id"
     );
-    $stmt->execute([
-        $_POST['titulo'],
-        $_POST['descripcion'],
-        $_POST['plataforma'],
-        $_POST['genero'],
-        $_POST['fecha_lanzamiento'],
-        $_POST['desarrolladora'],
-        $tipo,
-        $id
-    ]);
+    $stmt->execute($datos);
 
     header("Location: videojuegos.php");
     exit;
 }
 
-$stmt = $conexion->prepare("SELECT * FROM videojuegos WHERE id_videojuego = ?");
-$stmt->execute([$id]);
-$videojuego = $stmt->fetch(PDO::FETCH_ASSOC);
+// Cargamos los datos actuales para pre-rellenar el formulario
+$stmt_carga = $conexion->prepare("SELECT * FROM videojuegos WHERE id_videojuego = ?");
+$stmt_carga->execute([$id_videojuego]);
+$videojuego = $stmt_carga->fetch(PDO::FETCH_ASSOC);
 
-$nombre_juego = htmlspecialchars($videojuego['titulo']);
-$titulo_pagina = "Editando: " . $nombre_juego . " | Panel Admin";
+$titulo_pagina = "Editando: " . htmlspecialchars($videojuego['titulo']) . " | Panel Admin";
+$modo          = 'editar';
 
-$modo = 'editar';
 require_once __DIR__ . '/../../../frontend/vistas/admin/videojuego_form.php';

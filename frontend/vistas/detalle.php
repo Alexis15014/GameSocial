@@ -127,23 +127,5 @@
     </div>
 </div>
 
-<script>
-const form = document.getElementById('estadoForm');
-if(form){
-    form.querySelectorAll('[data-estado]').forEach(b => b.addEventListener('click', () => {
-        form.elements['estado'].value = b.dataset.estado;
-        form.submit();
-    }));
-    form.querySelectorAll('[data-valoracion]').forEach(b => b.addEventListener('click', () => {
-        form.elements['valoracion'].value = b.dataset.valoracion;
-        form.submit();
-    }));
-}
-document.addEventListener('click', (e) => {
-    if(e.target.classList.contains('btn-responder')){
-        const f = e.target.closest('.comentario').querySelector('.form-respuesta');
-        if(f) f.classList.toggle('d-none');
-    }
-});
-</script>
+<script src="/gamesocial/frontend/assets/js/detalle.js"></script>
 <?php include __DIR__ . '/../partials/footer.php'; ?>

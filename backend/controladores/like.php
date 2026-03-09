@@ -1,23 +1,17 @@
 <?php
 /**
  * Controlador: like.php
- * Propósito: Gestionar el sistema de Toggle Like (Poner/Quitar) para videojuegos y comentarios.
+ * Propósito: Gestionar el toggle de likes para posts, respuestas y videojuegos.
+ * Proyecto: GameSocial
  */
 
 require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Like.php';
 require_once __DIR__ . '/../modelos/Notificacion.php';
+require_once __DIR__ . '/../helpers/auth.php';
 
-if (session_status() === PHP_SESSION_NONE) { session_start(); }
+$id_usuario = requiereLogin($conexion);
 
-// 1. Verificación de Seguridad
-$id_usuario = $_SESSION['id_usuario'] ?? null;
-if (!$id_usuario) {
-    header("Location: /gamesocial/backend/controladores/login.php");
-    exit;
-}
-
-// 2. Captura y Validación de Datos
 $tipo        = $_GET['tipo'] ?? null;
 $id_objetivo = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
@@ -28,30 +22,20 @@ if (!$tipo || !$id_objetivo) {
 $modelo_like         = new Like($conexion);
 $modelo_notificacion = new Notificacion($conexion);
 
-// 3. Ejecución de la lógica (Toggle)
-// $resultado será true si se añadió el like, false si se eliminó.
-$resultado = $modelo_like->toggle($id_usuario, $tipo, $id_objetivo);
+// toggle() devuelve true si se añadió el like, false si se eliminó
+$se_dio_like = $modelo_like->toggle($id_usuario, $tipo, $id_objetivo);
 
-// 4. Gestión de Notificaciones (Solo si es un nuevo Like)
-if ($resultado === true) {
-    // Determinamos si el like es sobre un juego para vincularlo en la notificación
-    $id_referencia = ($tipo === 'videojuego') ? $id_objetivo : null;
-    
-    // Personalizamos el mensaje según el tipo para que sea más natural
-    $mensaje = ($tipo === 'videojuego') 
-        ? "Te ha gustado un videojuego." 
+// Solo notificamos cuando se da like, nunca cuando se quita
+if ($se_dio_like === true) {
+    // Vinculamos la notificación al videojuego solo si el like es directamente sobre él
+    $id_videojuego_notificacion = ($tipo === 'videojuego') ? $id_objetivo : null;
+    $mensaje_notificacion = ($tipo === 'videojuego')
+        ? "Te ha gustado un videojuego."
         : "Has dado like a un comentario.";
 
-    $modelo_notificacion->crear(
-        $id_usuario,
-        'like',
-        $mensaje,
-        $id_referencia
-    );
+    $modelo_notificacion->crear($id_usuario, 'like', $mensaje_notificacion, $id_videojuego_notificacion);
 }
 
-// 5. Redirección Inteligente
-// Volvemos a la página anterior, o al índice si no hay referer.
-$redireccion = $_SERVER['HTTP_REFERER'] ?? '/gamesocial/frontend/vistas/index.php';
-header("Location: " . $redireccion);
+$url_redireccion = $_SERVER['HTTP_REFERER'] ?? '/gamesocial/frontend/vistas/index.php';
+header("Location: " . $url_redireccion);
 exit;

@@ -1,28 +1,30 @@
 <?php
 /**
- * Componente: Header (Vista)
- * Propósito: Renderizar la barra de navegación respetando el diseño original.
+ * Componente: header.php
+ * Propósito: Renderizar la barra de navegación principal con notificaciones.
+ * Proyecto: GameSocial
  */
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 require_once __DIR__ . '/../../backend/config/conexion.php';
 require_once __DIR__ . '/../../backend/modelos/Usuario.php';
 require_once __DIR__ . '/../../backend/modelos/Notificacion.php';
+require_once __DIR__ . '/../../backend/helpers/auth.php';
 
-$id_usuario = $_SESSION['id_usuario'] ?? null;
+// Iniciamos sesión de forma segura sin forzar login (el header es compartido por todas las vistas)
+global $conexion;
+iniciarSesionSegura();
+$id_usuario = obtenerIdSesion($conexion);
+
 $modelo_notificacion = new Notificacion($conexion);
 
-// Obtenemos notificaciones y contamos las nuevas
+// Cargamos las notificaciones del usuario y contamos las no leídas para el badge
 $notificaciones_usuario = $id_usuario ? $modelo_notificacion->obtenerPorUsuario($id_usuario) : [];
 $nuevas = 0;
 foreach ($notificaciones_usuario as $n) {
     if ($n['leida'] == 0) $nuevas++;
 }
 
-// Capturamos la URL actual de forma limpia para los retornos
+// URL actual codificada para usar como parámetro de retorno en las notificaciones
 $url_retorno = urlencode($_SERVER['REQUEST_URI']);
 ?>
 <!DOCTYPE html>

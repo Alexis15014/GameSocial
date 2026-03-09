@@ -1,37 +1,29 @@
 <?php
-// --------------------------------------------
-// Controlador: catálogo de videojuegos
-// --------------------------------------------
+/**
+ * Controlador: catalogo.php
+ * Propósito: Gestionar el catálogo de videojuegos con búsqueda y filtros dinámicos.
+ * Proyecto: GameSocial
+ */
+
 require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Videojuego.php';
+require_once __DIR__ . '/../helpers/auth.php';
+require_once __DIR__ . '/../helpers/imagen.php';
+require_once __DIR__ . '/../helpers/videojuego_admin.php';
 
-// Asegurar sesión
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Seguridad: usuario logueado
-$id_usuario = $_SESSION['id_usuario'] ?? null;
-if (!$id_usuario) {
-    header("Location: /gamesocial/backend/controladores/login.php");
-    exit;
-}
+$id_usuario = requiereLogin($conexion);
 
 $modelo_videojuego = new Videojuego($conexion);
 
-// ===========================
-// Recoger filtros
-// ===========================
-$busqueda       = trim($_GET['q'] ?? '');
-$genero         = trim($_GET['genero'] ?? '');
-$plataforma     = trim($_GET['plataforma'] ?? '');
+// Recogemos los filtros activos de la URL
+$busqueda       = trim($_GET['q']              ?? '');
+$genero         = trim($_GET['genero']         ?? '');
+$plataforma     = trim($_GET['plataforma']     ?? '');
 $desarrolladora = trim($_GET['desarrolladora'] ?? '');
-$tipo           = trim($_GET['tipo'] ?? '');
+$tipo           = trim($_GET['tipo']           ?? '');
 
-// ===========================
-// Construir consulta dinámica
-// ===========================
-$sql = "SELECT * FROM videojuegos WHERE 1=1";
+// Construimos la consulta dinámicamente según los filtros que estén activos
+$sql    = "SELECT * FROM videojuegos WHERE 1=1";
 $params = [];
 
 if ($busqueda !== '') {
@@ -51,6 +43,7 @@ if ($desarrolladora !== '') {
     $params[':desarrolladora'] = '%' . $desarrolladora . '%';
 }
 if ($tipo !== '') {
+    // El tipo usa = en vez de LIKE porque los valores son fijos y exactos
     $sql .= " AND tipo = :tipo";
     $params[':tipo'] = $tipo;
 }
@@ -61,47 +54,24 @@ $stmt = $conexion->prepare($sql);
 $stmt->execute($params);
 $videojuegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ===========================
-// Preparar imágenes (Rutas relativas originales)
-// ===========================
-foreach ($videojuegos as &$juego) {
-    // Usamos la ruta relativa que tenías: ../../ para subir desde backend/controladores
-    $ruta_verificacion = __DIR__ . '/../../' . $juego['imagen_portada'];
-    
-    if (!empty($juego['imagen_portada']) && file_exists($ruta_verificacion)) {
-        $juego['imagen_portada_url'] = '../../' . $juego['imagen_portada'];
-    } else {
-        $juego['imagen_portada_url'] = '../../frontend/assets/img_placeholder.png';
-    }
-}
+// Añadimos la URL de portada resuelta a cada juego
+procesarImagenesJuegos($videojuegos);
 
-// ===========================
-// Título de la página
-// ===========================
+// Título dinámico según el filtro activo
 if ($busqueda !== '') {
     $titulo_pagina = "Resultados para '" . htmlspecialchars($busqueda) . "' | GameSocial";
 } elseif ($genero !== '') {
     $titulo_pagina = "Juegos de " . htmlspecialchars($genero) . " | GameSocial";
-} elseif($plataforma !== ''){
-	$titulo_pagina = "Juegos de " . htmlspecialchars($plataforma) . " | GameSocial";
-} elseif($desarrolladora !== ''){
-	$titulo_pagina = "Juegos de " . htmlspecialchars($desarrolladora) . " | GameSocial";
-} elseif($tipo !== ''){
-    $etiquetas_tipo = [
-        'juego_base'       => 'Juego base',
-        'dlc'              => 'DLC',
-        'expansion'        => 'Expansión',
-        'edicion_especial' => 'Edición especial',
-        'remake'           => 'Remake',
-        'remaster'         => 'Remaster',
-    ];
-    $etiqueta_tipo = $etiquetas_tipo[$tipo] ?? ucfirst($tipo);
-	$titulo_pagina = $etiqueta_tipo . " | GameSocial";
+} elseif ($plataforma !== '') {
+    $titulo_pagina = "Juegos en " . htmlspecialchars($plataforma) . " | GameSocial";
+} elseif ($desarrolladora !== '') {
+    $titulo_pagina = "Juegos de " . htmlspecialchars($desarrolladora) . " | GameSocial";
+} elseif ($tipo !== '') {
+    // Usamos la etiqueta legible de TIPOS_VIDEOJUEGO_VALIDOS en vez de mostrar la clave interna
+    $etiqueta_tipo = TIPOS_VIDEOJUEGO_VALIDOS[$tipo] ?? ucfirst($tipo);
+    $titulo_pagina = $etiqueta_tipo . " | GameSocial";
 } else {
     $titulo_pagina = "Catálogo de Videojuegos | GameSocial";
 }
 
-// ===========================
-// Cargar vista (Ruta relativa original)
-// ===========================
 require_once __DIR__ . '/../../frontend/vistas/catalogo.php';

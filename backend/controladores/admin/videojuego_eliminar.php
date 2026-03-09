@@ -1,32 +1,29 @@
 <?php
-session_start();
-
-// 🔐 Seguridad: Solo administradores
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: /gamesocial/backend/controladores/login.php");
-    exit;
-}
+/**
+ * Controlador: admin/videojuego_eliminar.php
+ * Propósito: Eliminar un videojuego del catálogo desde el panel de administración.
+ * Proyecto: GameSocial
+ */
 
 require_once __DIR__ . '/../../config/conexion.php';
+require_once __DIR__ . '/../../helpers/auth.php';
 
-// Obtener el ID desde la URL (GET)
-$id = $_GET['id'] ?? null;
+requiereAdmin($conexion);
 
-if (!$id) {
+$id_videojuego = $_GET['id'] ?? null;
+
+if (!$id_videojuego) {
     die("ID de videojuego no válido o no proporcionado.");
 }
 
 try {
-    // 1. Opcional: Podrías eliminar también la imagen física del servidor si existiera
-    // 2. Ejecutar la eliminación en la base de datos
     $stmt = $conexion->prepare("DELETE FROM videojuegos WHERE id_videojuego = ?");
-    $stmt->execute([$id]);
+    $stmt->execute([$id_videojuego]);
 
-    // Redirigir al listado principal de administración con éxito
     header("Location: videojuegos.php?mensaje=eliminado");
     exit;
 
-} catch (PDOException $e) {
-    // En caso de error (por ejemplo, si tiene claves foráneas activas)
-    die("Error al eliminar el videojuego: " . $e->getMessage());
+} catch (PDOException $error_bd) {
+    // Puede fallar si el videojuego tiene claves foráneas activas en otras tablas
+    die("Error al eliminar el videojuego: " . $error_bd->getMessage());
 }

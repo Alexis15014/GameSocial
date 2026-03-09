@@ -115,15 +115,6 @@ include __DIR__ . '/../partials/header.php';
     <?php endforeach; ?>
 </div>
 
-<script>
-function mostrarFormulario(id){
-    const f = document.getElementById('form-' + id);
-    if(f) f.classList.toggle('d-none');
-}
-function mostrarFormularioPost(id){
-    const f = document.getElementById('form-post-' + id);
-    if(f) f.classList.toggle('d-none');
-}
-</script>
+<script src="/gamesocial/frontend/assets/js/feed.js"></script>
 
 <?php include __DIR__ . '/../partials/footer.php'; ?>

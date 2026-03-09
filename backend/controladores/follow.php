@@ -1,56 +1,45 @@
 <?php
 /**
  * Controlador: follow.php
- * Propósito: Gestionar el sistema de Seguimiento entre usuarios (Follow/Unfollow).
+ * Propósito: Gestionar el sistema de seguimiento entre usuarios (Follow/Unfollow).
+ * Proyecto: GameSocial
  */
 
 require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Follow.php';
 require_once __DIR__ . '/../modelos/Notificacion.php';
+require_once __DIR__ . '/../helpers/auth.php';
 
-if (session_status() === PHP_SESSION_NONE) { session_start(); }
+$id_usuario = requiereLogin($conexion);
 
-// 1. Validación de Sesión
-$id_usuario = $_SESSION['id_usuario'] ?? null;
-if (!$id_usuario) {
-    header("Location: /gamesocial/backend/controladores/login.php");
-    exit;
-}
-
-// 2. Captura del ID Objetivo (el usuario al que se quiere seguir)
 $id_objetivo = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
-// Seguridad: No seguirse a uno mismo ni procesar IDs nulos
+// No permitimos que un usuario se siga a sí mismo
 if (!$id_objetivo || $id_objetivo === $id_usuario) {
-    $referer = $_SERVER['HTTP_REFERER'] ?? '/gamesocial/frontend/vistas/perfil.php';
-    header("Location: " . $referer);
+    $url_retorno = $_SERVER['HTTP_REFERER'] ?? '/gamesocial/frontend/vistas/perfil.php';
+    header("Location: " . $url_retorno);
     exit;
 }
 
-$modelo_follow = new Follow($conexion);
+$modelo_follow       = new Follow($conexion);
 $modelo_notificacion = new Notificacion($conexion);
 
-// 3. Lógica de Seguimiento (Toggle)
 if ($modelo_follow->estaSiguiendo($id_usuario, $id_objetivo)) {
-    // Acción: Unfollow
+    // Unfollow: dejamos de seguir sin notificación
     $modelo_follow->dejarSeguir($id_usuario, $id_objetivo);
 } else {
-    // Acción: Follow
+    // Follow: empezamos a seguir y notificamos al usuario objetivo
     $modelo_follow->seguir($id_usuario, $id_objetivo);
 
-    // 4. Notificación: Solo cuando se empieza a seguir (UX limpia)
-    // Obtenemos el nombre del seguidor para que la notificación sea personal
     $nombre_seguidor = $_SESSION['nombre_usuario'] ?? 'Un usuario';
-    
     $modelo_notificacion->crear(
-        $id_objetivo, // El dueño del perfil recibe la notificación
+        $id_objetivo,
         'follow',
         "{$nombre_seguidor} ha empezado a seguirte.",
-        null // No hay ID de videojuego asociado aquí
+        null
     );
 }
 
-// 5. Redirección de Retorno
-$redireccion = $_SERVER['HTTP_REFERER'] ?? "/gamesocial/frontend/vistas/perfil.php?id=$id_objetivo";
-header("Location: " . $redireccion);
+$url_redireccion = $_SERVER['HTTP_REFERER'] ?? "/gamesocial/frontend/vistas/perfil.php?id=$id_objetivo";
+header("Location: " . $url_redireccion);
 exit;
