@@ -41,6 +41,28 @@ include __DIR__ . '/../partials/header.php';
                                 }; ?>">
                                     <?= ucfirst(str_replace('_',' ', $juego['estado'])); ?>
                                 </span>
+                                <?php
+                                $tipo_mj = $juego['tipo'] ?? 'juego_base';
+                                $tipo_etq_mj = [
+                                    'juego_base'       => 'Juego base',
+                                    'dlc'              => 'DLC',
+                                    'expansion'        => 'Expansión',
+                                    'edicion_especial' => 'Edición especial',
+                                    'remake'           => 'Remake',
+                                    'remaster'         => 'Remaster',
+                                ];
+                                $tipo_col_mj = [
+                                    'juego_base'       => 'badge-tipo-base',
+                                    'dlc'              => 'badge-tipo-dlc',
+                                    'expansion'        => 'badge-tipo-expansion',
+                                    'edicion_especial' => 'badge-tipo-especial',
+                                    'remake'           => 'badge-tipo-remake',
+                                    'remaster'         => 'badge-tipo-remaster',
+                                ];
+                                ?>
+                                <span class="badge-tipo <?= $tipo_col_mj[$tipo_mj] ?? 'badge-tipo-base' ?> ms-1">
+                                    <?= $tipo_etq_mj[$tipo_mj] ?? ucfirst($tipo_mj) ?>
+                                </span>
                             </div>
 
                             <div class="mb-3 text-center">

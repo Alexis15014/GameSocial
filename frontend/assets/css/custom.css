@@ -1056,6 +1056,63 @@ a.gamesocial-btn {
     border-radius: 6px;
 }
 
+/* ================================
+   BADGES DE TIPO DE CONTENIDO
+   ================================ */
+
+.badge-tipo {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Juego base - gris neutro */
+.badge-tipo-base {
+    background: linear-gradient(135deg, #3A3A4A, #252535);
+    color: #C8C8D8;
+    border: 1px solid #4A4A5A;
+}
+
+/* DLC - azul */
+.badge-tipo-dlc {
+    background: linear-gradient(135deg, #1A6BB0, #0F4880);
+    color: #D0EEFF;
+    border: 1px solid #2680C2;
+}
+
+/* Expansión - verde esmeralda */
+.badge-tipo-expansion {
+    background: linear-gradient(135deg, #1A7A4A, #0F5030);
+    color: #C0F0D5;
+    border: 1px solid #22A060;
+}
+
+/* Edición especial - dorado */
+.badge-tipo-especial {
+    background: linear-gradient(135deg, #C09010, #8A6500);
+    color: #FFF3C0;
+    border: 1px solid #D4A820;
+}
+
+/* Remake - púrpura intenso */
+.badge-tipo-remake {
+    background: linear-gradient(135deg, #6E48AA, #4B307A);
+    color: #EEE0FF;
+    border: 1px solid #8A60CC;
+}
+
+/* Remaster - naranja/cobre */
+.badge-tipo-remaster {
+    background: linear-gradient(135deg, #B05A20, #7A3A10);
+    color: #FFE0C0;
+    border: 1px solid #C87030;
+}
+
 /* Badge rol */
 .badge-rol {
     font-size: 0.65rem;

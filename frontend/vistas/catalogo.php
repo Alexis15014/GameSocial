@@ -48,7 +48,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3 border-end-divider">
                 <strong class="d-block mb-2"><i class="fas fa-building text-purple"></i> Desarrolladora</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
@@ -58,6 +58,26 @@
                     foreach (array_keys($devs) as $d): ?>
                         <a href="?desarrolladora=<?= urlencode($d) ?>" class="btn-filtro"><?= htmlspecialchars($d) ?></a>
                     <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <strong class="d-block mb-2"><i class="fas fa-layer-group text-purple"></i> Tipo</strong>
+                <div class="d-flex flex-wrap gap-1">
+                    <?php
+                    $tipos_catalogo = [
+                        'juego_base'       => 'Juego base',
+                        'dlc'              => 'DLC',
+                        'expansion'        => 'Expansión',
+                        'edicion_especial' => 'Edición especial',
+                        'remake'           => 'Remake',
+                        'remaster'         => 'Remaster',
+                    ];
+                    $tipos_presentes = array_unique(array_column($videojuegos, 'tipo'));
+                    foreach ($tipos_catalogo as $val => $etiqueta):
+                        if (in_array($val, $tipos_presentes)): ?>
+                            <a href="?tipo=<?= urlencode($val) ?>" class="btn-filtro"><?= $etiqueta ?></a>
+                        <?php endif;
+                    endforeach; ?>
                 </div>
             </div>
         </div>
@@ -95,9 +115,31 @@
                             <span class="d-block small text-truncate text-muted mb-1">
                                 <i class="fas fa-tag text-purple me-1"></i> <?= htmlspecialchars($videojuego['genero']); ?>
                             </span>
-                            <span class="d-block small text-truncate text-muted">
+                            <span class="d-block small text-truncate text-muted mb-1">
                                 <i class="fas fa-building text-purple me-1"></i> <?= htmlspecialchars($videojuego['desarrolladora']); ?>
                             </span>
+                            <?php
+                            $tipo_val = $videojuego['tipo'] ?? 'juego_base';
+                            $tipo_colores = [
+                                'juego_base'       => 'badge-tipo-base',
+                                'dlc'              => 'badge-tipo-dlc',
+                                'expansion'        => 'badge-tipo-expansion',
+                                'edicion_especial' => 'badge-tipo-especial',
+                                'remake'           => 'badge-tipo-remake',
+                                'remaster'         => 'badge-tipo-remaster',
+                            ];
+                            $tipo_etiquetas = [
+                                'juego_base'       => 'Juego base',
+                                'dlc'              => 'DLC',
+                                'expansion'        => 'Expansión',
+                                'edicion_especial' => 'Edición especial',
+                                'remake'           => 'Remake',
+                                'remaster'         => 'Remaster',
+                            ];
+                            $clase_tipo = $tipo_colores[$tipo_val] ?? 'badge-tipo-base';
+                            $etiqueta_tipo = $tipo_etiquetas[$tipo_val] ?? ucfirst($tipo_val);
+                            ?>
+                            <span class="badge-tipo <?= $clase_tipo ?>"><?= $etiqueta_tipo ?></span>
                         </div>
 
                         <a href="detalle.php?id=<?= $videojuego['id_videojuego']; ?>" class="btn-detalle mt-auto">

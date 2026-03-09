@@ -24,6 +24,7 @@ class Videojuego{
                     genero,
                     desarrolladora,
                     plataforma,
+                    tipo,
                     imagen_portada
                 FROM videojuegos
                 ORDER BY fecha_lanzamiento DESC";
@@ -44,6 +45,7 @@ class Videojuego{
                     fecha_lanzamiento, 
                     desarrolladora, 
                     plataforma, 
+                    tipo,
                     imagen_portada
                 FROM videojuegos
                 WHERE id_videojuego = :id
@@ -64,6 +66,7 @@ class Videojuego{
                     titulo, 
                     genero, 
                     plataforma, 
+                    tipo,
                     imagen_portada
                 FROM videojuegos
                 WHERE titulo LIKE :termino

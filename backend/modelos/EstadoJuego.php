@@ -17,7 +17,7 @@ class EstadoJuego {
     // Obtenemos la biblioteca completa de un usuario con los detalles de los juegos.
     public function obtenerJuegosUsuario($id_usuario) {
         $sql = "SELECT uv.id_usuario, uv.id_videojuego, uv.estado, uv.valoracion, uv.fecha_estado,
-                       v.titulo, v.plataforma, v.imagen_portada
+                       v.titulo, v.plataforma, v.tipo, v.imagen_portada
                 FROM usuario_videojuego uv
                 JOIN videojuegos v ON uv.id_videojuego = v.id_videojuego
                 WHERE uv.id_usuario = :id_usuario";

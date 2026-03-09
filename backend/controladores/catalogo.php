@@ -26,6 +26,7 @@ $busqueda       = trim($_GET['q'] ?? '');
 $genero         = trim($_GET['genero'] ?? '');
 $plataforma     = trim($_GET['plataforma'] ?? '');
 $desarrolladora = trim($_GET['desarrolladora'] ?? '');
+$tipo           = trim($_GET['tipo'] ?? '');
 
 // ===========================
 // Construir consulta dinámica
@@ -48,6 +49,10 @@ if ($plataforma !== '') {
 if ($desarrolladora !== '') {
     $sql .= " AND desarrolladora LIKE :desarrolladora";
     $params[':desarrolladora'] = '%' . $desarrolladora . '%';
+}
+if ($tipo !== '') {
+    $sql .= " AND tipo = :tipo";
+    $params[':tipo'] = $tipo;
 }
 
 $sql .= " ORDER BY fecha_lanzamiento DESC";
@@ -81,7 +86,18 @@ if ($busqueda !== '') {
 	$titulo_pagina = "Juegos de " . htmlspecialchars($plataforma) . " | GameSocial";
 } elseif($desarrolladora !== ''){
 	$titulo_pagina = "Juegos de " . htmlspecialchars($desarrolladora) . " | GameSocial";
-}else {
+} elseif($tipo !== ''){
+    $etiquetas_tipo = [
+        'juego_base'       => 'Juego base',
+        'dlc'              => 'DLC',
+        'expansion'        => 'Expansión',
+        'edicion_especial' => 'Edición especial',
+        'remake'           => 'Remake',
+        'remaster'         => 'Remaster',
+    ];
+    $etiqueta_tipo = $etiquetas_tipo[$tipo] ?? ucfirst($tipo);
+	$titulo_pagina = $etiqueta_tipo . " | GameSocial";
+} else {
     $titulo_pagina = "Catálogo de Videojuegos | GameSocial";
 }
 
