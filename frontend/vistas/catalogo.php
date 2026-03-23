@@ -20,7 +20,7 @@
 
     <div class="filtros-seccion mb-4 p-4 shadow-sm">
         <div class="row">
-            <div class="col-md-4 mb-3 border-end-divider">
+            <div class="col-12 col-md-4 mb-3 border-end-divider">
                 <strong class="d-block mb-2"><i class="fas fa-ghost text-purple"></i> Género</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
@@ -34,7 +34,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-md-4 mb-3 border-end-divider">
+            <div class="col-12 col-md-4 mb-3 border-end-divider">
                 <strong class="d-block mb-2"><i class="fas fa-gamepad text-purple"></i> Plataforma</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
@@ -48,7 +48,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-md-3 mb-3 border-end-divider">
+            <div class="col-12 col-md-3 mb-3 border-end-divider">
                 <strong class="d-block mb-2"><i class="fas fa-building text-purple"></i> Desarrolladora</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
@@ -60,7 +60,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-12 col-md-3 mb-3">
                 <strong class="d-block mb-2"><i class="fas fa-layer-group text-purple"></i> Tipo</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
@@ -88,7 +88,7 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         <?php foreach ($videojuegos as $videojuego): ?>
             <div class="col">
                 <div class="tarjeta-videojuego h-100">

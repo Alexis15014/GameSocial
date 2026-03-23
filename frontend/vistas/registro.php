@@ -9,7 +9,7 @@ include __DIR__ . '/../partials/header.php';
 
 <div class="container gamesocial-registro-container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-5">
             <div class="card gamesocial-card border-0">
                 <div class="card-body p-4">
                     <h2 class="gamesocial-title text-center mb-4">🎮 Registro</h2>

@@ -50,10 +50,10 @@ class EstadoJuego {
         $id_videojuego = (int)$id_videojuego;
 
         // --- VALIDACIÓN DE ESTADO ---
-        $valores_validos = ['pendiente', 'en_progreso', 'finalizado'];
+        $valores_validos = ['sin_iniciar', 'inacabado', 'terminado', 'completado', 'en_curso', 'abandonado'];
         $estado = strtolower(trim($estado));
         if (!in_array($estado, $valores_validos)) {
-            $estado = 'pendiente';
+            $estado = 'sin_iniciar';
         }
 
         // --- VALIDACIÓN DE VALORACIÓN ---
@@ -112,15 +112,44 @@ class EstadoJuego {
         return $row['media'] ? (float)$row['media'] : 0.0;
     }
 
-    // Contamos cuántos juegos ha completado un usuario (estado 'finalizado').
+    // Contamos cuántos juegos ha terminado un usuario (estado 'terminado').
     public function contarJuegosFinalizados($id_usuario) {
         $sql = "SELECT COUNT(*) FROM usuario_videojuego 
-                WHERE id_usuario = :id_usuario AND estado = 'finalizado'";
+                WHERE id_usuario = :id_usuario AND estado = 'terminado'";
         
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
         $stmt->execute();
         
         return (int)$stmt->fetchColumn();
+    }
+
+    // Devuelve un array con el conteo de juegos por cada estado para un usuario.
+    public function estadisticasPorEstado($id_usuario) {
+        $sql = "SELECT estado, COUNT(*) as total
+                FROM usuario_videojuego
+                WHERE id_usuario = :id_usuario
+                GROUP BY estado";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $todos = [
+            'sin_iniciar' => 0,
+            'inacabado'   => 0,
+            'terminado'   => 0,
+            'completado'  => 0,
+            'en_curso'    => 0,
+            'abandonado'  => 0,
+        ];
+
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            if (isset($todos[$row['estado']])) {
+                $todos[$row['estado']] = (int)$row['total'];
+            }
+        }
+
+        return $todos;
     }
 }

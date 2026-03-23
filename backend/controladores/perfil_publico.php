@@ -1,7 +1,7 @@
 <?php
 /**
  * Controlador: perfil_publico.php
- * Propósito: Mostrar el perfil público de otro usuario con sus logros y datos de comunidad.
+ * Propósito: Mostrar el perfil público de otro usuario con logros, listas y estadísticas.
  * Proyecto: GameSocial
  */
 
@@ -9,9 +9,11 @@ require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Usuario.php';
 require_once __DIR__ . '/../modelos/Follow.php';
 require_once __DIR__ . '/../modelos/Logro.php';
+require_once __DIR__ . '/../modelos/Lista.php';
+require_once __DIR__ . '/../modelos/EstadoJuego.php';
 require_once __DIR__ . '/../helpers/auth.php';
+require_once __DIR__ . '/../helpers/imagen.php';
 
-// No forzamos login: el perfil público es accesible sin sesión
 iniciarSesionSegura();
 $id_sesion = obtenerIdSesion($conexion);
 
@@ -21,7 +23,6 @@ if (!$id_perfil) {
     die("ID de usuario no proporcionado.");
 }
 
-// Si el usuario intenta ver su propio perfil público lo mandamos al privado
 if ($id_sesion && $id_sesion === $id_perfil) {
     header("Location: perfil.php");
     exit;
@@ -30,6 +31,8 @@ if ($id_sesion && $id_sesion === $id_perfil) {
 $modelo_usuario = new Usuario($conexion);
 $modelo_follow  = new Follow($conexion);
 $modelo_logro   = new Logro($conexion);
+$modelo_lista   = new Lista($conexion);
+$modelo_estado  = new EstadoJuego($conexion);
 
 $usuario = $modelo_usuario->obtenerPorId($id_perfil);
 
@@ -41,6 +44,16 @@ $logros         = $modelo_logro->obtenerLogrosUsuario($id_perfil) ?: [];
 $seguidores     = $modelo_follow->contarSeguidores($id_perfil);
 $seguidos       = $modelo_follow->contarSeguidos($id_perfil);
 $esta_siguiendo = $id_sesion ? $modelo_follow->estaSiguiendo($id_sesion, $id_perfil) : false;
+
+// Listas públicas
+$listas_publicas = $modelo_lista->obtenerListasPublicasUsuario($id_perfil);
+foreach ($listas_publicas as &$l) {
+    $l['portada_url'] = resolverPortada($l['portada_lista'] ?? null);
+}
+unset($l);
+
+// Estadísticas de colección
+$stats_estados = $modelo_estado->estadisticasPorEstado($id_perfil);
 
 $nombre_usuario_perfil = htmlspecialchars($usuario['nombre_usuario'] ?? 'Gamer');
 $titulo_pagina         = "Perfil de " . $nombre_usuario_perfil . " | GameSocial";

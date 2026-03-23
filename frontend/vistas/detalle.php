@@ -9,7 +9,7 @@
     </div>
 
     <div class="row mb-5 g-4">
-        <div class="col-lg-8">
+        <div class="col-12 col-lg-8">
             <div class="card info-videojuego shadow-sm p-3 h-100">
                 <p><strong>Descripción:</strong><br><?= nl2br(htmlspecialchars($videojuego['descripcion'])) ?></p>
                 <p><strong>Lanzamiento:</strong> <?= htmlspecialchars($videojuego['fecha_lanzamiento']) ?></p>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-12 col-lg-4">
             <div class="card estado-valoracion shadow-sm p-3 h-100 d-flex flex-column justify-content-between">
                 <div>
                     <h5 class="mb-3 text-center">Mi estado</h5>
@@ -48,9 +48,10 @@
                         <input type="hidden" id="estado" name="estado" value="<?= $estado_actual['estado'] ?? '' ?>">
                         <input type="hidden" id="valoracion" name="valoracion" value="<?= $valoracion_usuario ?? 0 ?>">
                         <div class="d-grid gap-2 mb-3">
-                            <?php foreach (['pendiente','en_progreso','finalizado'] as $e): ?>
+                            <?php $estados_det = ['sin_iniciar'=>'Sin iniciar','inacabado'=>'Inacabado','terminado'=>'Terminado','completado'=>'Completado','en_curso'=>'En curso','abandonado'=>'Abandonado'];
+                            foreach ($estados_det as $e => $etiqueta_e): ?>
                                 <button type="button" class="btn btn-estado <?= ($estado_actual['estado'] ?? '') === $e ? 'activo' : 'inactivo' ?>" data-estado="<?= $e ?>">
-                                    <?= ucfirst(str_replace('_',' ',$e)) ?>
+                                    <?= $etiqueta_e ?>
                                 </button>
                             <?php endforeach; ?>
                         </div>
@@ -86,7 +87,7 @@
                     $nivelClass = 'nivel-' . max(0, min(2, $nivel)); ?>
                     <div class="comentario <?= $nivelClass ?>" data-id="<?= $c['id_comentario'] ?>">
                         <div class="cabecera-comentario">
-                            <div class="usuario"><?= htmlspecialchars($c['nombre_usuario']) ?></div>
+                            <div class="usuario"><a href="/gamesocial/backend/controladores/perfil_publico.php?id=<?= $c['id_usuario'] ?>" class="nombre-usuario-link"><?= htmlspecialchars($c['nombre_usuario']) ?></a></div>
                             <div class="meta"><?= htmlspecialchars($c['fecha_comentario']) ?></div>
                         </div>
                         <?php if(!empty($padre_nombre)): ?>

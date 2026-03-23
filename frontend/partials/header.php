@@ -31,6 +31,7 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo_pagina ?? "GameSocial"; ?></title>
     <link rel="icon" type="image/png" href="<?php echo $favicon_url ?? '/gamesocial/frontend/assets/img/gamesocial.png'; ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -56,6 +57,7 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
                 <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/feed.php">Inicio</a></li>
                 <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/catalogo.php">Catálogo</a></li>
                 <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/mis_juegos.php">Mis juegos</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/listas.php">Mis listas</a></li>
                 <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/perfil.php">Perfil</a></li>
                 <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
                     <li class="nav-item"><a href="/gamesocial/backend/controladores/admin/admin.php" class="enlace-nav nav-link">Panel Admin</a></li>

@@ -27,6 +27,12 @@ include __DIR__ . '/../partials/header.php';
     // FUNCIONES AUXILIARES
     // =========================
 
+    function enlaceUsuario($id, $nombre) {
+        return '<a href="/gamesocial/backend/controladores/perfil_publico.php?id=' . (int)$id . '" class="nombre-usuario-link">'
+             . htmlspecialchars($nombre)
+             . '</a>';
+    }
+
     function mostrarRespuestas($respuestas, $nivel = 0, $padre_nombre = null){
         foreach($respuestas as $r):
             $nivelClass = 'nivel-' . max(0, min(4, $nivel));
@@ -34,7 +40,7 @@ include __DIR__ . '/../partials/header.php';
         ?>
         <div class="comentario reply <?= $nivelClass ?>" data-id="<?= $r['id_respuesta'] ?>">
             <div class="cabecera-comentario">
-                <div class="usuario"><?= htmlspecialchars($r['nombre_usuario']) ?></div>
+                <div class="usuario"><?= enlaceUsuario($r['id_usuario'], $r['nombre_usuario']) ?></div>
                 <div class="meta"><?= htmlspecialchars($r['fecha_creacion']) ?></div>
             </div>
 
@@ -88,7 +94,7 @@ include __DIR__ . '/../partials/header.php';
     ?>
         <div class="comentario post">
             <div class="cabecera-comentario">
-                <div class="usuario"><?= htmlspecialchars($post['nombre_usuario']) ?></div>
+                <div class="usuario"><?= enlaceUsuario($post['id_usuario'], $post['nombre_usuario']) ?></div>
                 <div class="meta"><?= htmlspecialchars($post['fecha_creacion']) ?></div>
             </div>
             <div class="cuerpo-comentario"><?= nl2br(htmlspecialchars($post['contenido'])) ?></div>
