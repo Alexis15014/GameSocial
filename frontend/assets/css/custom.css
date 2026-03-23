@@ -1804,8 +1804,6 @@ a.gamesocial-btn {
 
 /* Filtros: en móvil, colapsar con max-height */
 
-}
-
 .border-purple {
     border: 1px solid #3E2D50 !important;
 }
@@ -2589,13 +2587,19 @@ a.gamesocial-btn {
 @media (max-width: 768px) {
 
     /* Tarjetas: imagen ajustada tablet */
-    .tarjeta-videojuego .imagen-wrapper { height: 230px; }
+    .tarjeta-videojuego .imagen-wrapper { 
+		height: 230px;
+	}
 
     /* Portada de lista en perfil público */
-    .portada-lista-wrapper { height: 180px; }
+    .portada-lista-wrapper { 
+		height: 180px; 
+	}
 
     /* Feed: respuestas con menos sangría */
-    .respuestas { padding-left: 12px; }
+    .respuestas { 
+		padding-left: 12px; 
+	}
 
     /* Footer layout gestionado por Bootstrap */
 }
@@ -2608,22 +2612,36 @@ a.gamesocial-btn {
     
 
     /* Navbar */
-    .logo-navbar { height: 36px; margin-right: 6px; }
+    .logo-navbar { 
+		height: 36px; 
+		margin-right: 6px; 
+	}
 
     /* Buscador de usuarios en navbar: ancho completo */
-    .form-buscador { max-width: 100%; }
+    .form-buscador { 
+		max-width: 100%; 
+	}
 
     /* Tarjetas: 2 cols en móvil → imagen compacta */
-    .tarjeta-videojuego .imagen-wrapper { height: 175px; }
+    .tarjeta-videojuego .imagen-wrapper { 
+		height: 175px; 
+	}
 
     /* Portada lista compacta */
-    .portada-lista-wrapper { height: 160px; }
+    .portada-lista-wrapper { 
+		height: 160px; 
+	}
 
     /* Avatar perfil */
-    .img-perfil-circulo { width: 110px; height: 110px; }
+    .img-perfil-circulo { 
+		width: 110px; 
+		height: 110px; 
+	}
 
     /* Perfil: canvas gráfico solo */
-    #graficoEstados, #graficoEstadosPub { max-height: 200px; }
+    #graficoEstados, #graficoEstadosPub { 
+		max-height: 200px; 
+	}
 
     /* Perfil: formulario avatar en columna */
     .perfil-privado-container form[enctype] {
@@ -2633,62 +2651,151 @@ a.gamesocial-btn {
 
     /* Botones de ancho completo en perfil */
     .btn-biografia,
-    .perfil-container .btn-detalle { width: 100%; text-align: center; }
+    .perfil-container .btn-detalle { 
+		width: 100%; 
+		text-align: center; 
+	}
 
     /* Feed y comentarios */
-    .contenedor-feed { padding-left: 0.5rem; padding-right: 0.5rem; }
-    .comentario, .post, .reply { padding: 0.75rem; }
-    .cabecera-comentario { flex-direction: column; align-items: flex-start; gap: 2px; }
-    .cabecera-comentario .usuario { max-width: 100%; }
-    .cabecera-comentario .meta { font-size: 0.72rem; }
-    .nivel-1, .nivel-2, .nivel-3, .nivel-4 { margin-left: 8px; }
-    .respuestas { padding-left: 8px; }
+    .contenedor-feed { 
+		padding-left: 0.5rem; 
+		padding-right: 0.5rem; 
+	}
+
+    .comentario, .post, .reply { 
+		padding: 0.75rem; 
+	}
+
+    .cabecera-comentario { 
+		flex-direction: column; 
+		align-items: flex-start; 
+		gap: 2px; 
+	}
+
+    .cabecera-comentario .usuario { 
+		max-width: 100%; 
+	}
+
+    .cabecera-comentario .meta { 
+		font-size: 0.72rem; 
+	}
+
+    .nivel-1, .nivel-2, .nivel-3, .nivel-4 { 
+		margin-left: 8px; 
+	}
+
+    .respuestas { 
+		padding-left: 8px; 
+	}
 
     /* Catálogo: buscador en columna */
-    .input-busqueda-group { flex-direction: column; max-width: 100%; }
-    .input-busqueda { border-radius: 8px; width: 100%; }
-    .btn-busqueda { border-radius: 8px; width: 100%; margin-top: 0.4rem; }
+    .input-busqueda-group { 
+		flex-direction: column;
+		max-width: 100%; 
+	}
+
+    .input-busqueda { 
+		border-radius: 8px; 
+		width: 100%; 
+	}
+
+    .btn-busqueda { 
+		border-radius: 8px; 
+		width: 100%; 
+		margin-top: 0.4rem; 
+	}
 
     /* Filtros catálogo */
-    .filtros-seccion { padding: 1rem; }
-    .btn-filtro { font-size: 0.65rem; padding: 4px 8px; }
+    .filtros-seccion { 
+		padding: 1rem; 
+	}
+
+    .btn-filtro { 
+		font-size: 0.65rem; 
+		padding: 4px 8px; 
+	}
 
     /* Título de secciones */
-    .catalogo-titulo { font-size: 1.25rem; letter-spacing: 1px; }
-    .feed-titulo { font-size: 1.3rem; }
+    .catalogo-titulo { 
+		font-size: 1.25rem; 
+		letter-spacing: 1px; 
+	}
+
+    .feed-titulo { 
+		font-size: 1.3rem; 
+	}
 
     /* Perfil público */
-    .gamesocial-perfil-title { font-size: 1.6rem; }
+    .gamesocial-perfil-title { 
+		font-size: 1.6rem; 
+	}
 
     /* Badge estado grande */
-    .badge-estado-mj { font-size: 0.78rem; padding: 5px 10px; }
+    .badge-estado-mj { 
+		font-size: 0.78rem; 
+		padding: 5px 10px; 
+	}
 
     /* Registro y login: tarjeta más compacta */
-    .gamesocial-card { padding: 1.25rem; }
-    .gamesocial-title { font-size: 1.4rem; }
+    .gamesocial-card { 
+		padding: 1.25rem; 
+	}
+
+    .gamesocial-title { 
+		font-size: 1.4rem; 
+	}
 
     /* Login card: asegurar que se vea centrada y con buen tamaño */
-    .login-container { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-    .login-card { padding: 1.25rem; border-radius: 8px; max-width: 100%; }
+    .login-container { 
+		padding-top: 1.5rem; 
+		padding-bottom: 1.5rem; 
+	}
+
+    .login-card { 
+		padding: 1.25rem; 
+		border-radius: 8px; 
+		max-width: 100%; 
+	}
 
     /* Notificaciones: dropdown más estrecho */
-    .desplegable-notificaciones { width: min(310px, 85vw); }
+    .desplegable-notificaciones { 
+		width: min(310px, 85vw); 
+	}
 }
 
 /* --- EXTRA SMALL (≤480px) — Móvil estrecho ------------------- */
 @media (max-width: 480px) {
 
     /* Tarjetas: imagen mínima móvil estrecho */
-    .tarjeta-videojuego .imagen-wrapper { height: 150px; }
+    .tarjeta-videojuego .imagen-wrapper { 
+		height: 150px; 
+	}
 
     /* Login y registro: sin margen lateral, card pegada */
-    .login-container { margin-top: 1.5rem; padding: 0 0.5rem; }
-    .login-card { padding: 1.25rem; border-radius: 8px; }
-    .gamesocial-registro-container { padding: 0.5rem 0; }
-    .gamesocial-card { padding: 1rem; border-radius: 8px; }
+    .login-container { 
+		margin-top: 1.5rem; 
+		padding: 0 0.5rem; 
+	}
+
+    .login-card { 
+		padding: 1.25rem; 
+		border-radius: 8px; 
+	}
+
+    .gamesocial-registro-container { 
+		padding: 0.5rem 0; 
+	}
+    .gamesocial-card { 
+		padding: 1rem; 
+		border-radius: 8px; 
+	}
 
     /* Interruptor: tamaño mínimo táctil */
-    .interruptor-visibilidad { width: 44px; height: 26px; min-width: 44px; }
+    .interruptor-visibilidad { 
+		width: 44px; 
+		height: 26px; 
+		min-width: 44px; 
+	}
 
     /* Acciones en tarjeta lista: botones apilados */
     .tarjeta-videojuego .cuerpo-tarjeta .d-flex.gap-2.mt-auto {
@@ -2705,13 +2812,26 @@ a.gamesocial-btn {
     }
 
     /* Detalle juego: botones estado en 2 columnas */
-    .estado-valoracion .d-grid { gap: 0.4rem; }
-    .btn-estado { padding: 8px 10px; font-size: 0.8rem; }
+    .estado-valoracion .d-grid { 
+		gap: 0.4rem; 
+	}
+
+    .btn-estado { 
+		padding: 8px 10px; 
+		font-size: 0.8rem; 
+	}
 
     /* Buscar usuarios: avatar más pequeño */
-    .avatar-usuario { width: 42px !important; height: 42px !important; }
+    .avatar-usuario { 
+		width: 42px !important; 
+		height: 42px !important; 
+	}
 
     /* Admin panel: tabla scroll horizontal */
-    .videojuegos-container table { display: block; overflow-x: auto; white-space: nowrap; }
+    .videojuegos-container table { 
+		display: block; 
+		overflow-x: auto; 
+		white-space: nowrap; }
 }
 
+}
