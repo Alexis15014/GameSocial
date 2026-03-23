@@ -35,7 +35,7 @@ $tipo_colores = [
             </a>
         <?php endif; ?>
 
-        <h1 class="mb-0"><?= htmlspecialchars($lista['nombre']) ?></h1>
+        <h1 class="mb-0 catalogo-titulo"><?= htmlspecialchars($lista['nombre']) ?></h1>
 
         <?php if (!$es_propietario && isset($lista['nombre_usuario'])): ?>
             <span class="small text-muted">
