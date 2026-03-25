@@ -127,41 +127,48 @@ $total_juegos_pub = array_sum($stats_estados);
     <?php if (!empty($listas_publicas)): ?>
         <h5 class="section-subtitle mb-4">📋 Listas de <?= htmlspecialchars($usuario['nombre_usuario']) ?></h5>
 
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-lg-3 g-4 mb-5">
+        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mb-5">
             <?php foreach ($listas_publicas as $lista): ?>
                 <div class="col">
-                    <a href="/gamesocial/backend/controladores/listas.php?ver=<?= $lista['id_lista'] ?>"
-                       class="text-decoration-none">
-                        <div class="tarjeta-lista h-100">
-                            <div class="portada-lista-wrapper">
-                                <?php if ($lista['portada_url']): ?>
-                                    <img src="<?= htmlspecialchars($lista['portada_url']) ?>"
-                                         class="portada-lista-img"
-                                         alt="Portada de <?= htmlspecialchars($lista['nombre']) ?>">
-                                <?php else: ?>
-                                    <div class="portada-lista-placeholder">
-                                        <i class="fas fa-list fa-2x text-purple opacity-50"></i>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="portada-lista-overlay">
-                                    <span class="portada-lista-count">
-                                        <i class="fas fa-gamepad me-1"></i>
-                                        <?= (int)$lista['total_juegos'] ?> juego<?= $lista['total_juegos'] != 1 ? 's' : '' ?>
-                                    </span>
+                    <div class="tarjeta-videojuego h-100">
+
+                        <div class="imagen-wrapper">
+                            <?php if ($lista['portada_url']): ?>
+                                <img src="<?= htmlspecialchars($lista['portada_url']) ?>"
+                                     class="imagen-tarjeta"
+                                     alt="Portada de <?= htmlspecialchars($lista['nombre']) ?>">
+                            <?php else: ?>
+                                <div class="lista-portada-placeholder">
+                                    <i class="fas fa-list fa-3x"></i>
                                 </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="cuerpo-tarjeta p-3 d-flex flex-column flex-grow-1">
+                            <h5 class="titulo-tarjeta mb-2 text-truncate"
+                                title="<?= htmlspecialchars($lista['nombre']) ?>">
+                                <?= htmlspecialchars($lista['nombre']) ?>
+                            </h5>
+
+                            <?php if ($lista['descripcion']): ?>
+                                <p class="small text-muted mb-2 lista-desc"><?= htmlspecialchars($lista['descripcion']) ?></p>
+                            <?php endif; ?>
+
+                            <div class="mb-3">
+                                <span class="badge bg-secondary">
+                                    <i class="fas fa-gamepad me-1"></i>
+                                    <?= (int)$lista['total_juegos'] ?> juego<?= $lista['total_juegos'] != 1 ? 's' : '' ?>
+                                </span>
                             </div>
-                            <div class="tarjeta-lista-body">
-                                <h5 class="titulo-tarjeta mb-1 text-truncate">
-                                    <?= htmlspecialchars($lista['nombre']) ?>
-                                </h5>
-                                <?php if ($lista['descripcion']): ?>
-                                    <p class="small text-muted mb-0 lista-desc">
-                                        <?= htmlspecialchars($lista['descripcion']) ?>
-                                    </p>
-                                <?php endif; ?>
+
+                            <div class="mt-auto">
+                                <a href="/gamesocial/backend/controladores/listas.php?ver=<?= $lista['id_lista'] ?>"
+                                   class="btn-detalle w-100 text-center">
+                                    Ver lista
+                                </a>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
