@@ -35,7 +35,7 @@ include __DIR__ . '/../partials/header.php';
                         <input type="hidden" id="estado" name="estado" value="<?= $estado_actual['estado'] ?? '' ?>">
                         <input type="hidden" id="valoracion" name="valoracion" value="<?= $valoracion_usuario ?? 0 ?>">
                         <div class="d-grid gap-2 mb-3">
-                            <?php $estados_det = ['sin_iniciar'=>'Sin iniciar','inacabado'=>'Inacabado','terminado'=>'Terminado','completado'=>'Completado','en_curso'=>'En curso','abandonado'=>'Abandonado'];
+                            <?php $estados_det = ['sin_iniciar'=>'Sin iniciar','terminado'=>'Terminado','completado'=>'Completado','en_curso'=>'En curso','abandonado'=>'Abandonado'];
                             foreach ($estados_det as $e => $etiqueta_e): ?>
                                 <button type="button" class="btn btn-estado <?= ($estado_actual['estado'] ?? '') === $e ? 'activo' : 'inactivo' ?>" data-estado="<?= $e ?>">
                                     <?= $etiqueta_e ?>

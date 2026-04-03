@@ -2307,10 +2307,6 @@ a.gamesocial-btn {
     background: linear-gradient(135deg, #0a9ec2, #077d99) !important;
     color: #fff !important;
 }
-.bg-estado-inacabado {
-    background: linear-gradient(135deg, #FF8C00, #CC6E00) !important;
-    color: #fff !important;
-}
 .bg-estado-terminado {
     background: linear-gradient(135deg, #6E48AA, #4B307A) !important;
     color: #fff !important;

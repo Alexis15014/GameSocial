@@ -50,7 +50,7 @@ class EstadoJuego {
         $id_videojuego = (int)$id_videojuego;
 
         // --- VALIDACIÓN DE ESTADO ---
-        $valores_validos = ['sin_iniciar', 'inacabado', 'terminado', 'completado', 'en_curso', 'abandonado'];
+        $valores_validos = ['sin_iniciar', 'terminado', 'completado', 'en_curso', 'abandonado'];
         $estado = strtolower(trim($estado));
         if (!in_array($estado, $valores_validos)) {
             $estado = 'sin_iniciar';
@@ -137,7 +137,6 @@ class EstadoJuego {
 
         $todos = [
             'sin_iniciar' => 0,
-            'inacabado'   => 0,
             'terminado'   => 0,
             'completado'  => 0,
             'en_curso'    => 0,
