@@ -1,4 +1,7 @@
-<?php include __DIR__ . '/../partials/header.php'; ?>
+<?php
+require_once __DIR__ . '/../../backend/config/tipos_videojuego.php';
+include __DIR__ . '/../partials/header.php';
+?>
 
 <div class="container mt-4 contenedor-catalogo mb-4">
     <h2 class="mb-4 text-center catalogo-titulo">CATÁLOGO DE VIDEOJUEGOS</h2>
@@ -64,16 +67,8 @@
                 <strong class="d-block mb-2"><i class="fas fa-layer-group text-purple"></i> Tipo</strong>
                 <div class="d-flex flex-wrap gap-1">
                     <?php
-                    $tipos_catalogo = [
-                        'juego_base'       => 'Juego base',
-                        'dlc'              => 'DLC',
-                        'expansion'        => 'Expansión',
-                        'edicion_especial' => 'Edición especial',
-                        'remake'           => 'Remake',
-                        'remaster'         => 'Remaster',
-                    ];
                     $tipos_presentes = array_unique(array_column($videojuegos, 'tipo'));
-                    foreach ($tipos_catalogo as $val => $etiqueta):
+                    foreach ($tipo_etiquetas as $val => $etiqueta):
                         if (in_array($val, $tipos_presentes)): ?>
                             <a href="?tipo=<?= urlencode($val) ?>" class="btn-filtro"><?= $etiqueta ?></a>
                         <?php endif;
@@ -119,25 +114,9 @@
                                 <i class="fas fa-building text-purple me-1"></i> <?= htmlspecialchars($videojuego['desarrolladora']); ?>
                             </span>
                             <?php
-                            $tipo_val = $videojuego['tipo'] ?? 'juego_base';
-                            $tipo_colores = [
-                                'juego_base'       => 'badge-tipo-base',
-                                'dlc'              => 'badge-tipo-dlc',
-                                'expansion'        => 'badge-tipo-expansion',
-                                'edicion_especial' => 'badge-tipo-especial',
-                                'remake'           => 'badge-tipo-remake',
-                                'remaster'         => 'badge-tipo-remaster',
-                            ];
-                            $tipo_etiquetas = [
-                                'juego_base'       => 'Juego base',
-                                'dlc'              => 'DLC',
-                                'expansion'        => 'Expansión',
-                                'edicion_especial' => 'Edición especial',
-                                'remake'           => 'Remake',
-                                'remaster'         => 'Remaster',
-                            ];
-                            $clase_tipo = $tipo_colores[$tipo_val] ?? 'badge-tipo-base';
-                            $etiqueta_tipo = $tipo_etiquetas[$tipo_val] ?? ucfirst($tipo_val);
+                            $tipo_val      = $videojuego['tipo'] ?? 'juego_base';
+                            $clase_tipo    = $tipo_colores[$tipo_val]    ?? 'badge-tipo-base';
+                            $etiqueta_tipo = $tipo_etiquetas[$tipo_val]  ?? ucfirst($tipo_val);
                             ?>
                             <span class="badge-tipo <?= $clase_tipo ?>"><?= $etiqueta_tipo ?></span>
                         </div>

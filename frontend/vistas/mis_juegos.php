@@ -1,39 +1,10 @@
-<?php 
+<?php
 /**
  * Vista: mis_juegos.php
  */
-include __DIR__ . '/../partials/header.php'; 
-
-$estados_etiquetas_mj = [
-    'sin_iniciar' => 'Sin iniciar',
-    'inacabado'   => 'Inacabado',
-    'terminado'   => 'Terminado',
-    'completado'  => 'Completado',
-    'en_curso'    => 'En curso',
-    'abandonado'  => 'Abandonado',
-];
-$estados_clases_mj = [
-    'sin_iniciar' => 'bg-estado-sin_iniciar',
-    'inacabado'   => 'bg-estado-inacabado',
-    'terminado'   => 'bg-estado-terminado',
-    'completado'  => 'bg-estado-completado',
-    'en_curso'    => 'bg-estado-en_curso',
-    'abandonado'  => 'bg-estado-abandonado',
-];
-$tipo_etq_mj = [
-    'dlc'              => 'DLC',
-    'expansion'        => 'Expansión',
-    'edicion_especial' => 'Edición especial',
-    'remake'           => 'Remake',
-    'remaster'         => 'Remaster',
-];
-$tipo_col_mj = [
-    'dlc'              => 'badge-tipo-dlc',
-    'expansion'        => 'badge-tipo-expansion',
-    'edicion_especial' => 'badge-tipo-especial',
-    'remake'           => 'badge-tipo-remake',
-    'remaster'         => 'badge-tipo-remaster',
-];
+require_once __DIR__ . '/../../backend/config/tipos_videojuego.php';
+require_once __DIR__ . '/../../backend/config/estados_juego.php';
+include __DIR__ . '/../partials/header.php';
 ?>
 
 <div class="container mt-4 contenedor-catalogo">
@@ -66,8 +37,8 @@ $tipo_col_mj = [
                             <!-- Estado: badge grande y visible, encima de las estrellas -->
                             <?php
                             $est_clave = $juego['estado'] ?? 'sin_iniciar';
-                            $est_clase = $estados_clases_mj[$est_clave] ?? 'bg-secondary';
-                            $est_label = $estados_etiquetas_mj[$est_clave] ?? ucfirst($est_clave);
+                            $est_clase = $estados_clases[$est_clave] ?? 'bg-secondary';
+                            $est_label = $estados_etiquetas[$est_clave] ?? ucfirst($est_clave);
                             ?>
                             <div class="mb-2">
                                 <span class="badge badge-estado-mj <?= $est_clase ?>">
@@ -85,10 +56,10 @@ $tipo_col_mj = [
                             <!-- Tipo (solo si no es juego_base) -->
                             <?php
                             $tipo_mj = $juego['tipo'] ?? 'juego_base';
-                            if (isset($tipo_etq_mj[$tipo_mj])): ?>
+                            if (isset($tipo_etiquetas[$tipo_mj])): ?>
                                 <div class="mb-2">
-                                    <span class="badge-tipo <?= $tipo_col_mj[$tipo_mj] ?>">
-                                        <?= $tipo_etq_mj[$tipo_mj] ?>
+                                    <span class="badge-tipo <?= $tipo_colores[$tipo_mj] ?>">
+                                        <?= $tipo_etiquetas[$tipo_mj] ?>
                                     </span>
                                 </div>
                             <?php endif; ?>

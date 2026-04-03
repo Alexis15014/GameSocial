@@ -1,4 +1,7 @@
-<?php include __DIR__ . '/../partials/header.php'; ?>
+<?php
+require_once __DIR__ . '/../../backend/config/tipos_videojuego.php';
+include __DIR__ . '/../partials/header.php';
+?>
 
 <div class="container mt-4 contenedor-detalle">
     <div class="row mb-4">
@@ -16,25 +19,9 @@
                 <p><strong>Desarrolladora:</strong> <?= htmlspecialchars($videojuego['desarrolladora']) ?></p>
                 <p><strong>Plataforma:</strong> <?= htmlspecialchars($videojuego['plataforma']) ?></p>
                 <?php
-                $tipo_etiquetas_det = [
-                    'juego_base'       => 'Juego base',
-                    'dlc'              => 'DLC',
-                    'expansion'        => 'Expansión',
-                    'edicion_especial' => 'Edición especial',
-                    'remake'           => 'Remake',
-                    'remaster'         => 'Remaster',
-                ];
-                $tipo_det = $videojuego['tipo'] ?? 'juego_base';
-                $etiqueta_det = $tipo_etiquetas_det[$tipo_det] ?? ucfirst($tipo_det);
-                $tipo_colores_det = [
-                    'juego_base'       => 'badge-tipo-base',
-                    'dlc'              => 'badge-tipo-dlc',
-                    'expansion'        => 'badge-tipo-expansion',
-                    'edicion_especial' => 'badge-tipo-especial',
-                    'remake'           => 'badge-tipo-remake',
-                    'remaster'         => 'badge-tipo-remaster',
-                ];
-                $clase_det = $tipo_colores_det[$tipo_det] ?? 'badge-tipo-base';
+                $tipo_det     = $videojuego['tipo'] ?? 'juego_base';
+                $etiqueta_det = $tipo_etiquetas[$tipo_det] ?? ucfirst($tipo_det);
+                $clase_det    = $tipo_colores[$tipo_det]   ?? 'badge-tipo-base';
                 ?>
                 <p><strong>Tipo:</strong> <span class="badge-tipo <?= $clase_det ?>"><?= $etiqueta_det ?></span></p>
             </div>

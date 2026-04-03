@@ -1,26 +1,11 @@
-<?php 
+<?php
 /**
  * Vista: perfil_publico.php
  * Propósito: Visualización de perfil público con listas, estadísticas de colección y logros.
  */
+require_once __DIR__ . '/../../backend/config/estados_juego.php';
 include __DIR__ . '/../partials/header.php';
 
-$estados_etiquetas_pub = [
-    'sin_iniciar' => 'Sin iniciar',
-    'inacabado'   => 'Inacabado',
-    'terminado'   => 'Terminado',
-    'completado'  => 'Completado',
-    'en_curso' => 'En curso',
-    'abandonado'  => 'Abandonado',
-];
-$estados_colores_pub = [
-    'sin_iniciar' => '#00C8FF',
-    'inacabado'   => '#FF8C00',
-    'terminado'   => '#9D4EDD',
-    'completado'  => '#00B37E',
-    'en_curso' => '#00C49A',
-    'abandonado'  => '#FF3D5A',
-];
 $total_juegos_pub = array_sum($stats_estados);
 ?>
 
@@ -51,7 +36,12 @@ $total_juegos_pub = array_sum($stats_estados);
 
         <div class="row g-4 align-items-center mb-5">
             <div class="col-12 col-md-5 text-center">
-                <canvas id="graficoEstadosPub" style="max-height:240px;"></canvas>
+                <canvas id="graficoEstadosPub" style="max-height:240px;"
+                    data-labels='<?= json_encode(array_keys($stats_estados)) ?>'
+                    data-datos='<?= json_encode(array_values($stats_estados)) ?>'
+                    data-colores='<?= json_encode(array_values($estados_colores_chart)) ?>'
+                    data-etiquetas='<?= json_encode($estados_etiquetas) ?>'
+                ></canvas>
                 <p class="text-muted small mt-2 mb-0">
                     <i class="fas fa-gamepad me-1"></i>
                     <?= $total_juegos_pub ?> juego<?= $total_juegos_pub != 1 ? 's' : '' ?> en su biblioteca
@@ -63,11 +53,11 @@ $total_juegos_pub = array_sum($stats_estados);
                         <?php if ($cantidad > 0): ?>
                         <div class="col-6">
                             <div class="d-flex align-items-center gap-2 p-2 rounded"
-                                 style="background:rgba(255,255,255,0.04); border-left:3px solid <?= $estados_colores_pub[$clave] ?>;">
-                                <span class="fw-bold fs-5" style="color:<?= $estados_colores_pub[$clave] ?>; font-family:'Orbitron',sans-serif;">
+                                 style="background:rgba(255,255,255,0.04); border-left:3px solid <?= $estados_colores_chart[$clave] ?>;">
+                                <span class="fw-bold fs-5" style="color:<?= $estados_colores_chart[$clave] ?>; font-family:'Orbitron',sans-serif;">
                                     <?= $cantidad ?>
                                 </span>
-                                <span class="small text-light"><?= $estados_etiquetas_pub[$clave] ?></span>
+                                <span class="small text-light"><?= $estados_etiquetas[$clave] ?></span>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -77,48 +67,7 @@ $total_juegos_pub = array_sum($stats_estados);
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-        <script>
-        (function () {
-            const rawLabels  = <?= json_encode(array_keys($stats_estados)) ?>;
-            const rawDatos   = <?= json_encode(array_values($stats_estados)) ?>;
-            const rawColores = <?= json_encode(array_values($estados_colores_pub)) ?>;
-            const etiquetas  = <?= json_encode($estados_etiquetas_pub) ?>;
-
-            const labels = [], datos = [], colores = [];
-            rawLabels.forEach(function(k, i) {
-                if (rawDatos[i] > 0) {
-                    labels.push(etiquetas[k] || k);
-                    datos.push(rawDatos[i]);
-                    colores.push(rawColores[i]);
-                }
-            });
-
-            new Chart(document.getElementById('graficoEstadosPub'), {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{ data: datos, backgroundColor: colores, borderColor: '#1F1B24', borderWidth: 3, hoverOffset: 10 }]
-                },
-                options: {
-                    responsive: true, cutout: '62%',
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#1F1B24', borderColor: '#3E2D50', borderWidth: 1,
-                            titleColor: '#FBB040', bodyColor: '#F5F5F5',
-                            callbacks: {
-                                label: function(ctx) {
-                                    const total = ctx.dataset.data.reduce(function(a,b){return a+b;},0);
-                                    const pct = ((ctx.parsed/total)*100).toFixed(1);
-                                    return '  ' + ctx.label + ': ' + ctx.parsed + ' (' + pct + '%)';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        })();
-        </script>
+        <script src="/gamesocial/frontend/assets/js/perfil_publico.js"></script>
 
         <hr class="border-secondary my-4">
     <?php endif; ?>

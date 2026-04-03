@@ -1,26 +1,10 @@
-<?php 
+<?php
 /**
  * Vista: perfil.php
  * Propósito: Gestión de cuenta, biografía, estadísticas de colección, listas y logros.
  */
-include __DIR__ . '/../partials/header.php'; 
-
-$estados_etiquetas = [
-    'sin_iniciar' => 'Sin iniciar',
-    'inacabado'   => 'Inacabado',
-    'terminado'   => 'Terminado',
-    'completado'  => 'Completado',
-    'en_curso'    => 'En curso',
-    'abandonado'  => 'Abandonado',
-];
-$estados_colores_chart = [
-    'sin_iniciar' => '#00C8FF',
-    'inacabado'   => '#FF8C00',
-    'terminado'   => '#9D4EDD',
-    'completado'  => '#00B37E',
-    'en_curso'    => '#00C49A',
-    'abandonado'  => '#FF3D5A',
-];
+require_once __DIR__ . '/../../backend/config/estados_juego.php';
+include __DIR__ . '/../partials/header.php';
 
 $total_juegos = array_sum($stats_estados);
 ?>
@@ -72,7 +56,12 @@ $total_juegos = array_sum($stats_estados);
     <?php if ($total_juegos > 0): ?>
         <div class="row g-4 align-items-center mb-5">
             <div class="col-12 col-md-5 text-center">
-                <canvas id="graficoEstados" style="max-height:260px;"></canvas>
+                <canvas id="graficoEstados" style="max-height:260px;"
+                    data-labels='<?= json_encode(array_keys($stats_estados)) ?>'
+                    data-datos='<?= json_encode(array_values($stats_estados)) ?>'
+                    data-colores='<?= json_encode(array_values($estados_colores_chart)) ?>'
+                    data-etiquetas='<?= json_encode($estados_etiquetas) ?>'
+                ></canvas>
                 <p class="text-muted small mt-3 mb-0">
                     <i class="fas fa-gamepad me-1"></i>
                     <?= $total_juegos ?> juego<?= $total_juegos != 1 ? 's' : '' ?> en tu biblioteca
@@ -98,58 +87,7 @@ $total_juegos = array_sum($stats_estados);
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-        <script>
-        (function () {
-            const rawLabels  = <?= json_encode(array_keys($stats_estados)) ?>;
-            const rawDatos   = <?= json_encode(array_values($stats_estados)) ?>;
-            const rawColores = <?= json_encode(array_values($estados_colores_chart)) ?>;
-            const etiquetas  = <?= json_encode($estados_etiquetas) ?>;
-
-            const labels = [], datos = [], colores = [];
-            rawLabels.forEach(function (k, i) {
-                if (rawDatos[i] > 0) {
-                    labels.push(etiquetas[k] || k);
-                    datos.push(rawDatos[i]);
-                    colores.push(rawColores[i]);
-                }
-            });
-
-            new Chart(document.getElementById('graficoEstados'), {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: datos,
-                        backgroundColor: colores,
-                        borderColor: '#1F1B24',
-                        borderWidth: 3,
-                        hoverOffset: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    cutout: '62%',
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#1F1B24',
-                            borderColor: '#3E2D50',
-                            borderWidth: 1,
-                            titleColor: '#FBB040',
-                            bodyColor: '#F5F5F5',
-                            callbacks: {
-                                label: function (ctx) {
-                                    const total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
-                                    const pct   = ((ctx.parsed / total) * 100).toFixed(1);
-                                    return '  ' + ctx.label + ': ' + ctx.parsed + ' (' + pct + '%)';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        })();
-        </script>
+        <script src="/gamesocial/frontend/assets/js/perfil.js"></script>
 
     <?php else: ?>
         <div class="alert alert-dark text-center mb-5">

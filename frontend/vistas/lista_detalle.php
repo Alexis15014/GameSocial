@@ -3,22 +3,8 @@
  * Vista: lista_detalle.php
  * Propósito: Mostrar el detalle de una lista y permitir añadir/quitar juegos.
  */
+require_once __DIR__ . '/../../backend/config/tipos_videojuego.php';
 include __DIR__ . '/../partials/header.php';
-
-$tipo_etiquetas = [
-    'dlc'              => 'DLC',
-    'expansion'        => 'Expansión',
-    'edicion_especial' => 'Edición especial',
-    'remake'           => 'Remake',
-    'remaster'         => 'Remaster',
-];
-$tipo_colores = [
-    'dlc'              => 'badge-tipo-dlc',
-    'expansion'        => 'badge-tipo-expansion',
-    'edicion_especial' => 'badge-tipo-especial',
-    'remake'           => 'badge-tipo-remake',
-    'remaster'         => 'badge-tipo-remaster',
-];
 ?>
 
 <div class="container mt-4 mb-5 lista-detalle-container">
@@ -175,14 +161,7 @@ $tipo_colores = [
             <?php endforeach; ?>
         </div>
 
-        <script>
-        document.getElementById('filtroCatalogo').addEventListener('input', function () {
-            const q = this.value.toLowerCase().trim();
-            document.querySelectorAll('#catalogo-agregar .item-catalogo').forEach(function (el) {
-                el.style.display = (q === '' || el.dataset.titulo.includes(q)) ? '' : 'none';
-            });
-        });
-        </script>
+        <script src="/gamesocial/frontend/assets/js/lista_detalle.js"></script>
     <?php endif; ?>
 </div>
 
