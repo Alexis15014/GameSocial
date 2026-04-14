@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../backend/config/estados_juego.php';
 include __DIR__ . '/../partials/header.php';
 ?>
 
-<div class="container mt-4 contenedor-catalogo">
+<div class="container mt-4 contenedor-catalogo mb-4">
     <h1 class="mb-4 catalogo-titulo">Mi Colección</h1>
 
     <?php if (empty($juegos)): ?>
@@ -53,19 +53,8 @@ include __DIR__ . '/../partials/header.php';
                                 <?php endfor; ?>
                             </div>
 
-                            <!-- Tipo (solo si no es juego_base) -->
-                            <?php
-                            $tipo_mj = $juego['tipo'] ?? 'juego_base';
-                            if (isset($tipo_etiquetas[$tipo_mj])): ?>
-                                <div class="mb-2">
-                                    <span class="badge-tipo <?= $tipo_colores[$tipo_mj] ?>">
-                                        <?= $tipo_etiquetas[$tipo_mj] ?>
-                                    </span>
-                                </div>
-                            <?php endif; ?>
-
                             <a href="../../backend/controladores/detalle.php?id=<?= $juego['id_videojuego']; ?>"
-                               class="btn-detalle mt-auto w-100 text-center">
+                               class="btn-detalle mt-auto">
                                 Ver Detalle
                             </a>
                         </div>

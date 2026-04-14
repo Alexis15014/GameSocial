@@ -145,7 +145,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .elemento-notificacion a:hover {
-    color: #FF4C4C;
+    /* color: #FF4C4C; */
+	color: #000000;
 }
 
 .acciones-notificacion a {
