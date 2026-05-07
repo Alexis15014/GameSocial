@@ -12,7 +12,7 @@ $total_juegos = array_sum($stats_estados);
 <div class="container mt-4 perfil-privado-container">
     <h1 class="text-center mb-4">Mi Perfil</h1>
 
-    <!-- Avatar -->\n    <div class=\"text-center mb-5\">
+    <!-- Avatar -->    <div class="text-center mb-5">
         <div class="avatar-wrapper mb-3">
             <img 
                 src="<?= !empty($usuario['foto_perfil']) ? '/gamesocial/' . htmlspecialchars($usuario['foto_perfil']) : '/gamesocial/frontend/assets/img/gamesocial.png'; ?>"
