@@ -12,7 +12,16 @@ $total_juegos_pub = array_sum($stats_estados);
 <div class="container mt-4 perfil-container">
     <div class="text-center mb-4">
         <h3 class="gamesocial-perfil-title"><?= htmlspecialchars($usuario['nombre_usuario']) ?></h3>
-        
+
+        <!-- Avatar del usuario -->
+        <div class="avatar-wrapper my-3">
+            <img
+                src="<?= resolverAvatar($usuario['foto_perfil'] ?? null) ?>"
+                class="img-perfil-circulo shadow-lg"
+                alt="Avatar de <?= htmlspecialchars($usuario['nombre_usuario']) ?>"
+            >
+        </div>
+
         <p class="text-light">
             <span class="stat-highlight"><strong><?= $seguidores ?></strong></span> seguidores ·
             <span class="stat-highlight"><strong><?= $seguidos ?></strong></span> siguiendo

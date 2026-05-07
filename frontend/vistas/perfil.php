@@ -12,8 +12,7 @@ $total_juegos = array_sum($stats_estados);
 <div class="container mt-4 perfil-privado-container">
     <h1 class="text-center mb-4">Mi Perfil</h1>
 
-    <!-- Avatar -->
-    <div class="text-center mb-5">
+    <!-- Avatar -->\n    <div class=\"text-center mb-5\">
         <div class="avatar-wrapper mb-3">
             <img 
                 src="<?= !empty($usuario['foto_perfil']) ? '/gamesocial/' . htmlspecialchars($usuario['foto_perfil']) : '/gamesocial/frontend/assets/img/gamesocial.png'; ?>"
@@ -21,6 +20,12 @@ $total_juegos = array_sum($stats_estados);
                 alt="Avatar de <?= htmlspecialchars($usuario['nombre_usuario']); ?>"
             >
         </div>
+
+        <?php if (!empty($_GET['error_avatar'])): ?>
+            <div class="alert alert-danger text-center mb-3">
+                ⚠️ <?= htmlspecialchars(urldecode($_GET['error_avatar'])) ?>
+            </div>
+        <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data" class="d-flex justify-content-center flex-column flex-sm-row align-items-center gap-2">
             <input type="file" name="avatar" accept="image/*" class="gamesocial-input archivo-avatar" required>

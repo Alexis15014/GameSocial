@@ -15,8 +15,10 @@ $id_usuario = requiereLogin($conexion);
 $tipo        = $_GET['tipo'] ?? null;
 $id_objetivo = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
-if (!$tipo || !$id_objetivo) {
-    die("Error: Parámetros insuficientes para procesar el Like.");
+$tipos_permitidos = ['post', 'respuesta', 'videojuego'];
+
+if (!$tipo || !in_array($tipo, $tipos_permitidos, true) || !$id_objetivo) {
+    die("Error: Parámetros insuficientes o tipo de like no válido.");
 }
 
 $modelo_like         = new Like($conexion);

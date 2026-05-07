@@ -26,6 +26,23 @@ $modelo_lista        = new Lista($conexion);
 // --- ACCIÓN: Subida de avatar ---
 if (!empty($_FILES['avatar']['name'])) {
     $archivo_subido    = $_FILES['avatar'];
+    $error_subida      = $archivo_subido['error'] ?? UPLOAD_ERR_NO_FILE;
+
+    if ($error_subida !== UPLOAD_ERR_OK) {
+        $mensajes_error_upload = [
+            UPLOAD_ERR_INI_SIZE   => 'El archivo supera el límite permitido por el servidor (upload_max_filesize).',
+            UPLOAD_ERR_FORM_SIZE  => 'El archivo supera el límite indicado en el formulario.',
+            UPLOAD_ERR_PARTIAL    => 'El archivo se subió de forma incompleta.',
+            UPLOAD_ERR_NO_FILE    => 'No se recibió ningún archivo.',
+            UPLOAD_ERR_NO_TMP_DIR => 'Falta la carpeta temporal del servidor.',
+            UPLOAD_ERR_CANT_WRITE => 'No se pudo escribir el archivo en el servidor. Revisa los permisos de la carpeta avatars/.',
+            UPLOAD_ERR_EXTENSION  => 'Una extensión de PHP bloqueó la subida.',
+        ];
+        $motivo = $mensajes_error_upload[$error_subida] ?? 'Error desconocido al subir el archivo.';
+        header("Location: /gamesocial/perfil?error_avatar=" . urlencode($motivo));
+        exit;
+    }
+
     $ruta_tmp          = $archivo_subido['tmp_name'];
     $extension_archivo = strtolower(pathinfo($archivo_subido['name'], PATHINFO_EXTENSION));
 
@@ -35,7 +52,12 @@ if (!empty($_FILES['avatar']['name'])) {
         $directorio_destino = __DIR__ . '/../../frontend/assets/avatars/';
 
         if (!file_exists($directorio_destino)) {
-            mkdir($directorio_destino, 0777, true);
+            mkdir($directorio_destino, 0775, true);
+        }
+
+        // Nos aseguramos de que la carpeta tenga permisos de escritura
+        if (!is_writable($directorio_destino)) {
+            @chmod($directorio_destino, 0775);
         }
 
         $nombre_archivo_nuevo = 'usuario_' . $id_usuario . '_' . time() . '.' . $extension_archivo;
@@ -47,6 +69,12 @@ if (!empty($_FILES['avatar']['name'])) {
             $modelo_notificacion->crear($id_usuario, 'perfil', '¡Tu nuevo avatar luce genial!');
 
             header("Location: /gamesocial/perfil?success=avatar");
+            exit;
+        } else {
+            $motivo = is_writable($directorio_destino)
+                ? 'No se pudo mover el archivo. Comprueba que PHP tiene permisos de escritura en la carpeta avatars/.'
+                : 'La carpeta avatars/ no tiene permisos de escritura en el servidor.';
+            header("Location: /gamesocial/perfil?error_avatar=" . urlencode($motivo));
             exit;
         }
     }
