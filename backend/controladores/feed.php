@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['contenido'])) {
         $modelo_notificacion->crear($id_usuario, 'post', 'Tu post se ha publicado correctamente.');
     }
 
-    header("Location: feed.php");
+    header("Location: /gamesocial/inicio");
     exit;
 }
 
@@ -63,4 +63,4 @@ unset($post);
 
 $titulo_pagina = "Inicio - Comunidad GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/feed.php';
+require __DIR__ . '/../../frontend/vistas/feed.php';

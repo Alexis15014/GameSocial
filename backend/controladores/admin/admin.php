@@ -24,19 +24,19 @@ $id_accion = $_GET['id']     ?? null;
 
 if ($accion === 'rol' && $id_accion) {
     $modelo_usuario->cambiarRol($id_accion);
-    header("Location: admin.php");
+    header("Location: /gamesocial/admin");
     exit;
 }
 
 if ($accion === 'eliminar_usuario' && $id_accion) {
     $modelo_usuario->eliminar($id_accion);
-    header("Location: admin.php");
+    header("Location: /gamesocial/admin");
     exit;
 }
 
 if ($accion === 'eliminar_post' && $id_accion) {
     $modelo_post->eliminar($id_accion);
-    header("Location: admin.php");
+    header("Location: /gamesocial/admin");
     exit;
 }
 
@@ -79,4 +79,4 @@ if ($busqueda_post !== '') {
 
 $titulo_pagina = "Panel de Administración General | GameSocial";
 
-require_once __DIR__ . '/../../../frontend/vistas/admin/admin.php';
+require __DIR__ . '/../../../frontend/vistas/admin/admin.php';

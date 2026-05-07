@@ -30,7 +30,7 @@ if (isset($_GET['marcar_leida']) && is_numeric($_GET['marcar_leida'])) {
         // Si tiene videojuego vinculado, redirigimos a su página de detalle
         $id_videojuego_vinculado = $notificacion['id_videojuego'] ?? null;
         if ($id_videojuego_vinculado && $id_videojuego_vinculado > 0) {
-            header("Location: /gamesocial/backend/controladores/detalle.php?id=$id_videojuego_vinculado");
+            header("Location: /gamesocial/juego/$id_videojuego_vinculado");
             exit;
         }
     }

@@ -7,6 +7,7 @@
 
 require_once __DIR__ . '/../../config/conexion.php';
 require_once __DIR__ . '/../../helpers/auth.php';
+require_once __DIR__ . '/../../helpers/slug.php';
 
 requiereAdmin($conexion);
 
@@ -34,4 +35,4 @@ $videojuegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $titulo_pagina = "Gestión de Videojuegos | Panel de Control";
 
-require_once __DIR__ . '/../../../frontend/vistas/admin/videojuegos.php';
+require __DIR__ . '/../../../frontend/vistas/admin/videojuegos.php';

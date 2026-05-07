@@ -42,5 +42,5 @@ session_destroy();
 $es_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 setcookie('gamesocial_remember', '', time() - 3600, '/', '', $es_https, true);
 
-header("Location: /gamesocial/backend/controladores/login.php?logout=success");
+header("Location: /gamesocial/login?logout=success");
 exit;

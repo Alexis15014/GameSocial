@@ -13,7 +13,7 @@ include __DIR__ . '/../partials/header.php';
     <?php if (empty($juegos)): ?>
         <div class="alert alert-dark text-center py-5">
             <p class="mb-3">Parece que tu biblioteca está vacía.</p>
-            <a href="catalogo.php" class="btn-detalle">Explorar Catálogo</a>
+            <a href="/gamesocial/catalogo" class="btn-detalle">Explorar Catálogo</a>
         </div>
     <?php else: ?>
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -53,7 +53,7 @@ include __DIR__ . '/../partials/header.php';
                                 <?php endfor; ?>
                             </div>
 
-                            <a href="../../backend/controladores/detalle.php?id=<?= $juego['id_videojuego']; ?>"
+                            <a href="/gamesocial/juego/<?= generarSlug($juego['titulo']); ?>"
                                class="btn-detalle mt-auto">
                                 Ver Detalle
                             </a>

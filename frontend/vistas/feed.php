@@ -10,7 +10,7 @@ include __DIR__ . '/../partials/header.php';
     <h2 class="feed-titulo text-center mb-4">Muro de la Comunidad</h2>
 
     <div class="card-publicar mb-4">
-        <form method="POST" action="/gamesocial/backend/controladores/feed.php">
+        <form method="POST" action="/gamesocial/inicio">
             <textarea name="contenido" 
                       class="gamesocial-input" 
                       rows="3" 
@@ -28,7 +28,7 @@ include __DIR__ . '/../partials/header.php';
     // =========================
 
     function enlaceUsuario($id, $nombre) {
-        return '<a href="/gamesocial/backend/controladores/perfil_publico.php?id=' . (int)$id . '" class="nombre-usuario-link">'
+        return '<a href="/gamesocial/usuario/' . (int)$id . '" class="nombre-usuario-link">'
              . htmlspecialchars($nombre)
              . '</a>';
     }
@@ -52,12 +52,12 @@ include __DIR__ . '/../partials/header.php';
 
             <div class="acciones-comentario">
                 <button type="button" class="btn-responder" onclick="mostrarFormulario(<?= $r['id_respuesta'] ?>)">Responder</button>
-                <a href="/gamesocial/backend/controladores/like.php?tipo=respuesta&id=<?= $r['id_respuesta'] ?>" class="btn-like">
+                <a href="/gamesocial/like?tipo=respuesta&id=<?= $r['id_respuesta'] ?>" class="btn-like">
                     ❤️ <?= $r['likes'] ?? 0 ?>
                 </a>
             </div>
 
-            <form method="POST" action="/gamesocial/backend/controladores/feed.php" class="form-respuesta d-none" id="form-<?= $r['id_respuesta'] ?>">
+            <form method="POST" action="/gamesocial/inicio" class="form-respuesta d-none" id="form-<?= $r['id_respuesta'] ?>">
                 <textarea name="contenido" class="gamesocial-input mt-2" rows="2" placeholder="Escribe tu respuesta..." required></textarea>
                 <input type="hidden" name="id_post" value="<?= $r['id_post'] ?>">
                 <input type="hidden" name="id_respuesta_padre" value="<?= $r['id_respuesta'] ?>">
@@ -101,12 +101,12 @@ include __DIR__ . '/../partials/header.php';
 
             <div class="acciones-comentario">
                 <button type="button" class="btn-responder" onclick="mostrarFormularioPost(<?= $post['id_post'] ?>)">Comentar</button>
-                <a href="/gamesocial/backend/controladores/like.php?tipo=post&id=<?= $post['id_post'] ?>" class="btn-like">
+                <a href="/gamesocial/like?tipo=post&id=<?= $post['id_post'] ?>" class="btn-like">
                     ❤️ <?= $post['likes'] ?? 0 ?>
                 </a>
             </div>
 
-            <form method="POST" action="/gamesocial/backend/controladores/feed.php" class="form-respuesta d-none" id="form-post-<?= $post['id_post'] ?>">
+            <form method="POST" action="/gamesocial/inicio" class="form-respuesta d-none" id="form-post-<?= $post['id_post'] ?>">
                 <textarea name="contenido" class="gamesocial-input mt-2" rows="2" placeholder="Escribe un comentario..." required></textarea>
                 <input type="hidden" name="id_post" value="<?= $post['id_post'] ?>">
                 <button class="btn-detalle btn-sm mt-1">Enviar</button>

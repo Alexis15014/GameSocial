@@ -22,7 +22,7 @@ include __DIR__ . '/../partials/header.php';
                         <div class="alert alert-success gamesocial-alert" role="alert">
                             <?= htmlspecialchars($success) ?>
                             <div class="mt-2">
-                                <a href="/gamesocial/backend/controladores/login.php" class="btn btn-sm btn-outline-light">Ir al Login</a>
+                                <a href="/gamesocial/login" class="btn btn-sm btn-outline-light">Ir al Login</a>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -74,7 +74,7 @@ include __DIR__ . '/../partials/header.php';
 
                         <p class="text-center text-light">
                             ¿Ya tienes cuenta? 
-                            <a href="/gamesocial/backend/controladores/login.php" class="gamesocial-link">Iniciar sesión</a>
+                            <a href="/gamesocial/login" class="gamesocial-link">Iniciar sesión</a>
                         </p>
                     </form>
                 </div>

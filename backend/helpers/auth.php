@@ -70,7 +70,7 @@ function requiereLogin(?PDO $conexion = null): int {
     intentarAutologin($conexion);
 
     if (empty($_SESSION['id_usuario'])) {
-        header("Location: /gamesocial/backend/controladores/login.php");
+        header("Location: /gamesocial/login");
         exit;
     }
 
@@ -83,7 +83,7 @@ function requiereAdmin(?PDO $conexion = null): int {
     intentarAutologin($conexion);
 
     if (empty($_SESSION['id_usuario']) || ($_SESSION['rol'] ?? '') !== 'admin') {
-        header("Location: /gamesocial/backend/controladores/login.php");
+        header("Location: /gamesocial/login");
         exit;
     }
 

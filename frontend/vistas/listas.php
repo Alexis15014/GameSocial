@@ -89,7 +89,7 @@ include __DIR__ . '/../partials/header.php';
 
                             <!-- Acciones -->
                             <div class="d-flex gap-2 mt-auto">
-                                <a href="listas.php?ver=<?= $lista['id_lista'] ?>" class="btn-detalle flex-grow-1 text-center">
+                                <a href="/gamesocial/lista/<?= $lista['id_lista'] ?>-<?= generarSlug($lista['nombre']) ?>" class="btn-detalle flex-grow-1 text-center">
                                     Ver lista
                                 </a>
                                 <form method="POST" onsubmit="return confirm('¿Eliminar esta lista permanentemente?')">

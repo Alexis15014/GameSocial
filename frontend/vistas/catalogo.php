@@ -6,7 +6,7 @@ include __DIR__ . '/../partials/header.php';
 <div class="container mt-4 contenedor-catalogo mb-4">
     <h2 class="mb-4 text-center catalogo-titulo">CATÁLOGO DE VIDEOJUEGOS</h2>
 
-    <form method="GET" class="form-busqueda mb-4">
+    <form method="GET" action="/gamesocial/catalogo" class="form-busqueda mb-4">
         <div class="input-group input-busqueda-group">
             <span class="input-group-text bg-dark border-purple border-end-0"><i class="fas fa-search text-white"></i></span>
             <input
@@ -33,7 +33,7 @@ include __DIR__ . '/../partials/header.php';
                     }
                     ksort($generos);
                     foreach (array_keys($generos) as $g): ?>
-                        <a href="?genero=<?= urlencode($g) ?>" class="btn-filtro"><?= htmlspecialchars($g) ?></a>
+                        <a href="/gamesocial/catalogo?genero=<?= urlencode($g) ?>" class="btn-filtro"><?= htmlspecialchars($g) ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -47,7 +47,7 @@ include __DIR__ . '/../partials/header.php';
                     }
                     ksort($plataformas);
                     foreach (array_keys($plataformas) as $p): ?>
-                        <a href="?plataforma=<?= urlencode($p) ?>" class="btn-filtro"><?= htmlspecialchars($p) ?></a>
+                        <a href="/gamesocial/catalogo?plataforma=<?= urlencode($p) ?>" class="btn-filtro"><?= htmlspecialchars($p) ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -59,7 +59,7 @@ include __DIR__ . '/../partials/header.php';
                     foreach ($videojuegos as $v) $devs[trim($v['desarrolladora'])] = true;
                     ksort($devs);
                     foreach (array_keys($devs) as $d): ?>
-                        <a href="?desarrolladora=<?= urlencode($d) ?>" class="btn-filtro"><?= htmlspecialchars($d) ?></a>
+                        <a href="/gamesocial/catalogo?desarrolladora=<?= urlencode($d) ?>" class="btn-filtro"><?= htmlspecialchars($d) ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -70,14 +70,14 @@ include __DIR__ . '/../partials/header.php';
                     $tipos_presentes = array_unique(array_column($videojuegos, 'tipo'));
                     foreach ($tipo_etiquetas as $val => $etiqueta):
                         if (in_array($val, $tipos_presentes)): ?>
-                            <a href="?tipo=<?= urlencode($val) ?>" class="btn-filtro"><?= $etiqueta ?></a>
+                            <a href="/gamesocial/catalogo?tipo=<?= urlencode($val) ?>" class="btn-filtro"><?= $etiqueta ?></a>
                         <?php endif;
                     endforeach; ?>
                 </div>
             </div>
         </div>
         <div class="text-center mt-3 pt-3 border-top border-purple-dark">
-            <a href="catalogo.php" class="btn-reset btn-sm text-decoration-none">
+            <a href="/gamesocial/catalogo" class="btn-reset btn-sm text-decoration-none">
                 <i class="fas fa-undo"></i> Restablecer todos los filtros
             </a>
         </div>
@@ -121,7 +121,7 @@ include __DIR__ . '/../partials/header.php';
                             <span class="badge-tipo <?= $clase_tipo ?>"><?= $etiqueta_tipo ?></span>
                         </div>
 
-                        <a href="detalle.php?id=<?= $videojuego['id_videojuego']; ?>" class="btn-detalle mt-auto">
+                        <a href="/gamesocial/juego/<?= generarSlug($videojuego['titulo']); ?>" class="btn-detalle mt-auto">
                             Ver detalle
                         </a>
                     </div>

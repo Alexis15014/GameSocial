@@ -9,13 +9,15 @@ require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Videojuego.php';
 require_once __DIR__ . '/../helpers/auth.php';
 require_once __DIR__ . '/../helpers/imagen.php';
+require_once __DIR__ . '/../helpers/slug.php';
 require_once __DIR__ . '/../helpers/videojuego_admin.php';
 
 $id_usuario = requiereLogin($conexion);
 
 $modelo_videojuego = new Videojuego($conexion);
 
-// Recogemos los filtros activos de la URL
+// Recogemos los filtros: pueden venir de la URL limpia (via $_GET seteado por el router)
+// o del parámetro ?q= del buscador de texto
 $busqueda       = trim($_GET['q']              ?? '');
 $genero         = trim($_GET['genero']         ?? '');
 $plataforma     = trim($_GET['plataforma']     ?? '');
@@ -74,4 +76,4 @@ if ($busqueda !== '') {
     $titulo_pagina = "Catálogo de Videojuegos | GameSocial";
 }
 
-require_once __DIR__ . '/../../frontend/vistas/catalogo.php';
+require __DIR__ . '/../../frontend/vistas/catalogo.php';

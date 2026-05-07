@@ -13,6 +13,7 @@ require_once __DIR__ . '/../modelos/Notificacion.php';
 require_once __DIR__ . '/../modelos/Logro.php';
 require_once __DIR__ . '/../helpers/auth.php';
 require_once __DIR__ . '/../helpers/imagen.php';
+require_once __DIR__ . '/../helpers/slug.php';
 
 $id_usuario = requiereLogin($conexion);
 
@@ -22,12 +23,20 @@ $modelo_comentario   = new Comentario($conexion);
 $modelo_notificacion = new Notificacion($conexion);
 $modelo_logro        = new Logro($conexion);
 
-$id_videojuego = isset($_GET['id']) ? (int)$_GET['id'] : null;
-if (!$id_videojuego) {
-    die("Videojuego no especificado.");
+// Aceptamos tanto slug (/juego/the-witcher-3) como id numérico (compatibilidad)
+if (isset($_GET['slug'])) {
+    $videojuego = $modelo_videojuego->obtenerPorSlug($_GET['slug']);
+} else {
+    $id_videojuego = isset($_GET['id']) ? (int)$_GET['id'] : null;
+    $videojuego    = $id_videojuego ? $modelo_videojuego->obtenerPorId($id_videojuego) : null;
 }
 
-$videojuego   = $modelo_videojuego->obtenerPorId($id_videojuego);
+if (!$videojuego) {
+    http_response_code(404);
+    die("<h1>Videojuego no encontrado.</h1>");
+}
+
+$id_videojuego = $videojuego['id_videojuego'];
 $titulo_juego = $videojuego['titulo'] ?? 'este juego';
 
 // --- PROCESAMIENTO DE ACCIONES (POST) ---
@@ -51,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $modelo_notificacion->crear($id_usuario, 'juego', "Has valorado $titulo_juego con $nueva_val estrellas.", $id_videojuego);
         }
 
-        header("Location: detalle.php?id=$id_videojuego");
+        header("Location: /gamesocial/juego/" . generarSlug($videojuego['titulo']));
         exit;
     }
 
@@ -75,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        header("Location: detalle.php?id=$id_videojuego");
+        header("Location: /gamesocial/juego/" . generarSlug($videojuego['titulo']));
         exit;
     }
 }
@@ -91,4 +100,4 @@ $videojuego['imagen_portada_url'] = resolverPortada($videojuego['imagen_portada'
 
 $titulo_pagina = $titulo_juego . " - GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/detalle.php';
+require __DIR__ . '/../../frontend/vistas/detalle.php';

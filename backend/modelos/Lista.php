@@ -80,6 +80,32 @@ class Lista {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Busca una lista por el slug generado a partir de su nombre.
+    // Primero busca entre las listas del usuario; si no la encuentra, busca públicas.
+    public function obtenerPorSlug(string $slug, int $id_usuario): array|false {
+        // Buscamos entre todas las listas del usuario
+        $propias = $this->obtenerListasUsuario($id_usuario);
+        foreach ($propias as $lista) {
+            if (generarSlug($lista['nombre']) === $slug) {
+                return $this->obtenerPorId($lista['id_lista'], $id_usuario);
+            }
+        }
+        // Buscamos entre listas públicas de otros usuarios
+        $sql = "SELECT l.*, u.nombre_usuario
+                FROM listas l
+                JOIN usuarios u ON l.id_usuario = u.id_usuario
+                WHERE l.es_publica = 1";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+        $publicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($publicas as $lista) {
+            if (generarSlug($lista['nombre']) === $slug) {
+                return $lista;
+            }
+        }
+        return false;
+    }
+
     // Obtiene los videojuegos de una lista concreta
     public function obtenerJuegosLista($id_lista) {
         $sql = "SELECT v.id_videojuego, v.titulo, v.plataforma, v.genero, v.tipo, v.imagen_portada,

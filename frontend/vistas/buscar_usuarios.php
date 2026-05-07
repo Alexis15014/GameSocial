@@ -3,7 +3,7 @@
 <div class="container mt-4 contenedor-busqueda">
     <h3 class="titulo-busqueda mb-4">🔍 Buscar Exploradores</h3>
 
-    <form method="GET" class="mb-4">
+    <form method="GET" action="/gamesocial/buscar-usuarios" class="mb-4">
         <div class="input-group search-box-container">
             <span class="input-group-text bg-dark border-purple text-white">
                 <i class="fas fa-search"></i>
@@ -25,7 +25,7 @@
                 <div class="item-usuario-card d-flex align-items-center gap-3 mb-3">
                     <div class="avatar-wrapper">
                         <img 
-                            src="<?= !empty($u['foto_perfil']) ? '/gamesocial/' . $u['foto_perfil'] : '/gamesocial/frontend/assets/img/gamesocial.png' ?>" 
+                            src="<?= htmlspecialchars($u['avatar_url']) ?>" 
                             class="avatar-usuario rounded-circle" 
                             alt="Avatar"
                         >
@@ -33,7 +33,7 @@
 
                     <div class="info-usuario flex-grow-1">
                         <div class="d-flex align-items-center gap-2">
-                            <a class="nombre-usuario-link" href="/gamesocial/backend/controladores/perfil_publico.php?id=<?= $u['id_usuario'] ?>">
+                            <a class="nombre-usuario-link" href="/gamesocial/usuario/<?= urlencode($u['nombre_usuario']) ?>">
                                 <?= htmlspecialchars($u['nombre_usuario']) ?>
                             </a>
                             <?php if (!empty($u['rol']) && $u['rol'] === 'admin'): ?>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="acciones-busqueda">
-                        <a href="/gamesocial/backend/controladores/perfil_publico.php?id=<?= $u['id_usuario'] ?>" class="btn btn-sm btn-outline-purple">
+                        <a href="/gamesocial/usuario/<?= urlencode($u['nombre_usuario']) ?>" class="btn btn-sm btn-outline-purple">
                             Ver Perfil
                         </a>
                     </div>

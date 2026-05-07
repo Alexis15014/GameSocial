@@ -20,7 +20,7 @@ $total_juegos_pub = array_sum($stats_estados);
 
         <?php if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] != $usuario['id_usuario']): ?>
             <div class="mt-3">
-                <a href="/gamesocial/backend/controladores/follow.php?id=<?= $usuario['id_usuario'] ?>"
+                <a href="/gamesocial/follow?id=<?= $usuario['id_usuario'] ?>"
                    class="btn-detalle <?= $esta_siguiendo ? 'btn-unfollow' : '' ?>">
                     <?= $esta_siguiendo ? 'Dejar de seguir' : 'Seguir a este Gamer' ?>
                 </a>
@@ -111,7 +111,7 @@ $total_juegos_pub = array_sum($stats_estados);
                             </div>
 
                             <div class="mt-auto">
-                                <a href="/gamesocial/backend/controladores/listas.php?ver=<?= $lista['id_lista'] ?>"
+                                <a href="/gamesocial/lista/<?= $lista['id_lista'] ?>-<?= generarSlug($lista['nombre']) ?>"
                                    class="btn-detalle w-100 text-center">
                                     Ver lista
                                 </a>

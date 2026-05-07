@@ -15,7 +15,7 @@ const DURACION_COOKIE_RECORDARME = 30 * 24 * 60 * 60;
 
 // Si ya hay sesión activa o la cookie es válida, mandamos directo al feed
 if (intentarAutologin()) {
-    header("Location: /gamesocial/backend/controladores/feed.php");
+    header("Location: /gamesocial/inicio");
     exit;
 }
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie('gamesocial_remember', $valor_cookie, $expiracion, '/', '', $es_https, true);
         }
 
-        header("Location: /gamesocial/backend/controladores/feed.php");
+        header("Location: /gamesocial/inicio");
         exit;
     }
 
@@ -59,4 +59,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $titulo_pagina = "Iniciar Sesión | GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/login.php';
+require __DIR__ . '/../../frontend/vistas/login.php';

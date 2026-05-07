@@ -8,6 +8,7 @@
 require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/Usuario.php';
 require_once __DIR__ . '/../helpers/auth.php';
+require_once __DIR__ . '/../helpers/imagen.php';
 
 $id_usuario_sesion = requiereLogin($conexion);
 
@@ -20,13 +21,20 @@ if ($termino !== '') {
     $resultados_raw = $modelo_usuario->buscarPorNombre($termino);
 
     // Filtramos al propio usuario para que no aparezca en sus resultados
-    $resultados = array_filter($resultados_raw, function($u) use ($id_usuario_sesion) {
+    $resultados_filtrados = array_filter($resultados_raw, function($u) use ($id_usuario_sesion) {
         return $u['id_usuario'] != $id_usuario_sesion;
     });
+
+    // Resolvemos el avatar de cada usuario encontrado
+    $resultados = [];
+    foreach ($resultados_filtrados as $u) {
+        $u['avatar_url'] = resolverAvatar($u['foto_perfil'] ?? null);
+        $resultados[] = $u;
+    }
 }
 
 $titulo_pagina = ($termino !== '')
     ? "Resultados para '" . htmlspecialchars($termino) . "' - GameSocial"
     : "Buscar Amigos - GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/buscar_usuarios.php';
+require __DIR__ . '/../../frontend/vistas/buscar_usuarios.php';

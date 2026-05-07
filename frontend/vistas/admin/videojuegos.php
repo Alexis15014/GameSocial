@@ -5,7 +5,7 @@
 
     <div class="row mb-4">
         <div class="col-md-12">
-            <form action="" method="GET" class="form-busqueda">
+            <form action="/gamesocial/admin/videojuegos" method="GET" class="form-busqueda">
                 <div class="input-busqueda-group">
                     <input type="text" name="q" class="input-busqueda" 
                            placeholder="Buscar por título..." 
@@ -16,7 +16,7 @@
                     </button>
 
                     <?php if (!empty($busqueda)): ?>
-                        <a href="videojuegos.php" class="btn-limpiar" title="Limpiar búsqueda">
+                        <a href="/gamesocial/admin/videojuegos" class="btn-limpiar" title="Limpiar búsqueda">
                             ✖
                         </a>
                     <?php endif; ?>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="/gamesocial/backend/controladores/admin/videojuego_crear.php" class="btn btn-success">
+        <a href="/gamesocial/admin/videojuego/crear" class="btn btn-success">
             ➕ Nuevo videojuego
         </a>
         <span class="text-light">Resultados: <?= count($videojuegos) ?></span>
@@ -81,12 +81,12 @@
                             </span>
                         </td>
                         <td>
-                            <a href="/gamesocial/backend/controladores/admin/videojuego_editar.php?id=<?= $juego['id_videojuego'] ?>"
+                            <a href="/gamesocial/admin/videojuego/editar/<?= generarSlug($juego['titulo']) ?>"
                                class="btn btn-sm btn-detalle">
                                ✏ Editar
                             </a>
 
-                            <a href="/gamesocial/backend/controladores/admin/videojuego_eliminar.php?id=<?= $juego['id_videojuego'] ?>"
+                            <a href="/gamesocial/admin/videojuego/eliminar/<?= generarSlug($juego['titulo']) ?>"
                                class="btn btn-sm btn-danger"
                                onclick="return confirm('¿Eliminar videojuego?')">
                                🗑 Eliminar

@@ -13,6 +13,7 @@ require_once __DIR__ . '/../modelos/EstadoJuego.php';
 require_once __DIR__ . '/../modelos/Lista.php';
 require_once __DIR__ . '/../helpers/auth.php';
 require_once __DIR__ . '/../helpers/imagen.php';
+require_once __DIR__ . '/../helpers/slug.php';
 
 $id_usuario = requiereLogin($conexion);
 
@@ -45,7 +46,7 @@ if (!empty($_FILES['avatar']['name'])) {
             $modelo_usuario->actualizarFotoPerfil($id_usuario, $ruta_relativa_bd);
             $modelo_notificacion->crear($id_usuario, 'perfil', '¡Tu nuevo avatar luce genial!');
 
-            header("Location: perfil.php?success=avatar");
+            header("Location: /gamesocial/perfil?success=avatar");
             exit;
         }
     }
@@ -58,7 +59,7 @@ if (isset($_POST['biografia'])) {
     if ($modelo_usuario->actualizarBiografia($id_usuario, $nueva_biografia)) {
         $modelo_notificacion->crear($id_usuario, 'perfil', 'Has actualizado tu descripción de perfil.');
 
-        header("Location: perfil.php?success=bio");
+        header("Location: /gamesocial/perfil?success=bio");
         exit;
     }
 }
@@ -78,4 +79,4 @@ unset($l);
 $nombre_perfil = $usuario['nombre_usuario'] ?? 'Gamer';
 $titulo_pagina = "Perfil de " . $nombre_perfil . " | GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/perfil.php';
+require __DIR__ . '/../../frontend/vistas/perfil.php';

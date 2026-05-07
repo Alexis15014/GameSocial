@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between align-items-center mt-4 mb-3 flex-wrap">
         <h3 class="subtitulo-panel mb-0">👤 Usuarios</h3>
         
-        <form action="" method="GET" class="form-busqueda">
+        <form action="/gamesocial/admin" method="GET" class="form-busqueda">
             <div class="input-busqueda-group">
                 <?php $val_user = $busqueda_user ?? ''; ?>
                 <input type="text" name="q" class="input-busqueda" 
@@ -17,7 +17,7 @@
                 <button type="submit" class="btn-busqueda">🔍</button>
 
                 <?php if (!empty($val_user)): ?>
-                    <a href="admin.php" class="btn-limpiar" title="Limpiar búsqueda">✖</a>
+                    <a href="/gamesocial/admin" class="btn-limpiar" title="Limpiar búsqueda">✖</a>
                 <?php endif; ?>
             </div>
         </form>
@@ -60,7 +60,7 @@
     <div class="d-flex justify-content-between align-items-center mt-5 mb-3 flex-wrap">
         <h3 class="subtitulo-panel mb-0">📝 Posts</h3>
         
-        <form action="" method="GET" class="form-busqueda">
+        <form action="/gamesocial/admin" method="GET" class="form-busqueda">
             <div class="input-busqueda-group">
                 <?php $val_post = $busqueda_post ?? ''; ?>
                 <input type="text" name="qp" class="input-busqueda" 
@@ -70,7 +70,7 @@
                 <button type="submit" class="btn-busqueda">🔍</button>
 
                 <?php if (!empty($val_post)): ?>
-                    <a href="admin.php" class="btn-limpiar" title="Limpiar búsqueda">✖</a>
+                    <a href="/gamesocial/admin" class="btn-limpiar" title="Limpiar búsqueda">✖</a>
                 <?php endif; ?>
             </div>
         </form>

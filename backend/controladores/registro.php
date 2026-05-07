@@ -54,4 +54,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $titulo_pagina = "Únete a GameSocial - Crear Cuenta";
 
-require_once __DIR__ . '/../../frontend/vistas/registro.php';
+require __DIR__ . '/../../frontend/vistas/registro.php';

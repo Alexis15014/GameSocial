@@ -16,7 +16,7 @@ $total_juegos = array_sum($stats_estados);
     <div class="text-center mb-5">
         <div class="avatar-wrapper mb-3">
             <img 
-                src="<?= $usuario['foto_perfil'] ? '../../' . htmlspecialchars($usuario['foto_perfil']) : '../../frontend/assets/img/gamesocial.png'; ?>"
+                src="<?= !empty($usuario['foto_perfil']) ? '/gamesocial/' . htmlspecialchars($usuario['foto_perfil']) : '/gamesocial/frontend/assets/img/gamesocial.png'; ?>"
                 class="img-perfil-circulo shadow-lg"
                 alt="Avatar de <?= htmlspecialchars($usuario['nombre_usuario']); ?>"
             >
@@ -92,7 +92,7 @@ $total_juegos = array_sum($stats_estados);
     <?php else: ?>
         <div class="alert alert-dark text-center mb-5">
             Aún no tienes juegos en tu biblioteca. 
-            <a href="catalogo.php" class="text-purple">¡Explora el catálogo!</a>
+            <a href="/gamesocial/catalogo" class="text-purple">¡Explora el catálogo!</a>
         </div>
     <?php endif; ?>
 
@@ -101,7 +101,7 @@ $total_juegos = array_sum($stats_estados);
          ======================== -->
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <h4 class="text-light mb-0">📋 Mis Listas</h4>
-        <a href="listas.php" class="btn-detalle btn-sm">
+        <a href="/gamesocial/listas" class="btn-detalle btn-sm">
             <i class="fas fa-plus me-1"></i> Nueva lista
         </a>
     </div>
@@ -147,7 +147,7 @@ $total_juegos = array_sum($stats_estados);
                             </div>
 
                             <div class="d-flex align-items-center gap-2 mb-3">
-                                <form method="POST" action="listas.php" class="d-inline">
+                                <form method="POST" action="/gamesocial/listas" class="d-inline">
                                     <input type="hidden" name="accion"   value="toggle_visibilidad">
                                     <input type="hidden" name="id_lista" value="<?= $lista['id_lista'] ?>">
                                     <button type="submit"
@@ -162,10 +162,10 @@ $total_juegos = array_sum($stats_estados);
                             </div>
 
                             <div class="d-flex gap-2 mt-auto">
-                                <a href="listas.php?ver=<?= $lista['id_lista'] ?>" class="btn-detalle flex-grow-1 text-center">
+                                <a href="/gamesocial/lista/<?= $lista['id_lista'] ?>-<?= generarSlug($lista['nombre']) ?>" class="btn-detalle flex-grow-1 text-center">
                                     Ver lista
                                 </a>
-                                <form method="POST" action="listas.php" onsubmit="return confirm('¿Eliminar esta lista permanentemente?')">
+                                <form method="POST" action="/gamesocial/listas" onsubmit="return confirm('¿Eliminar esta lista permanentemente?')">
                                     <input type="hidden" name="accion"   value="eliminar">
                                     <input type="hidden" name="id_lista" value="<?= $lista['id_lista'] ?>">
                                     <button type="submit" class="btn btn-danger btn-sm h-100" title="Eliminar lista">
@@ -180,7 +180,7 @@ $total_juegos = array_sum($stats_estados);
         </div>
     <?php else: ?>
         <div class="alert alert-dark text-center mb-5">
-            Aún no tienes listas. <a href="listas.php" class="text-purple">¡Crea tu primera lista!</a>
+            Aún no tienes listas. <a href="/gamesocial/listas" class="text-purple">¡Crea tu primera lista!</a>
         </div>
     <?php endif; ?>
 

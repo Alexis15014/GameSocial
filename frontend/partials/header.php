@@ -42,7 +42,7 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
 
 <nav class="barra-navegacion navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="marca navbar-brand d-flex align-items-center" href="/gamesocial/backend/controladores/feed.php">
+        <a class="marca navbar-brand d-flex align-items-center" href="/gamesocial/inicio">
             <img src="/gamesocial/frontend/assets/img/gamesocial.png" alt="Logo GameSocial" class="me-2 logo-navbar">
             GameSocial
         </a>
@@ -54,18 +54,18 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
 
         <div class="collapse navbar-collapse" id="contenidoNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/feed.php">Inicio</a></li>
-                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/catalogo.php">Catálogo</a></li>
-                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/mis_juegos.php">Mis juegos</a></li>
-                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/listas.php">Mis listas</a></li>
-                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/perfil.php">Perfil</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/inicio">Inicio</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/catalogo">Catálogo</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/mis-juegos">Mis juegos</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/listas">Mis listas</a></li>
+                <li class="nav-item"><a class="enlace-nav nav-link" href="/gamesocial/perfil">Perfil</a></li>
                 <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
-                    <li class="nav-item"><a href="/gamesocial/backend/controladores/admin/admin.php" class="enlace-nav nav-link">Panel Admin</a></li>
+                    <li class="nav-item"><a href="/gamesocial/admin" class="enlace-nav nav-link">Panel Admin</a></li>
                 <?php endif; ?>
             </ul>
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <form class="form-buscador d-flex" method="GET" action="/gamesocial/backend/controladores/buscar_usuarios.php">
+                <form class="form-buscador d-flex" method="GET" action="/gamesocial/buscar-usuarios">
                     <input class="form-control form-control-sm input-buscador" type="search" name="q" placeholder="Buscar usuarios" aria-label="Buscar usuarios">
                 </form>
                 
@@ -89,9 +89,9 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
                                     </div>
                                     <div class="acciones-notificacion d-flex flex-column">
                                         <?php if ($notificacion['leida'] == 0): ?>
-                                            <a href="/gamesocial/backend/controladores/notificaciones.php?marcar_leida=<?php echo $notificacion['id_notificacion']; ?>&redirect=<?php echo $url_retorno; ?>" class="btn btn-sm btn-success">Leída</a>
+                                            <a href="/gamesocial/notificaciones?marcar_leida=<?php echo $notificacion['id_notificacion']; ?>&redirect=<?php echo $url_retorno; ?>" class="btn btn-sm btn-success">Leída</a>
                                         <?php endif; ?>
-                                        <a href="/gamesocial/backend/controladores/notificaciones.php?eliminar=<?php echo $notificacion['id_notificacion']; ?>&redirect=<?php echo $url_retorno; ?>" class="btn btn-sm btn-danger">Eliminar</a>
+                                        <a href="/gamesocial/notificaciones?eliminar=<?php echo $notificacion['id_notificacion']; ?>&redirect=<?php echo $url_retorno; ?>" class="btn btn-sm btn-danger">Eliminar</a>
                                     </div>
                                 </li>
                                 <hr class="dropdown-divider">
@@ -99,7 +99,7 @@ $url_retorno = urlencode($_SERVER['REQUEST_URI']);
                         <?php endif; ?>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/gamesocial/backend/controladores/logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="/gamesocial/logout"><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>
         </div>
     </div>

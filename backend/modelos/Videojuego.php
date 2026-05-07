@@ -59,6 +59,19 @@ class Videojuego{
     }
 
 
+    // Obtenemos un videojuego buscando todos y comparando sus slugs generados.
+    // No requiere columna slug en la BD — la generamos en tiempo de ejecución.
+    public function obtenerPorSlug(string $slug): array|false {
+        $todos = $this->obtenerTodos();
+        foreach ($todos as $juego) {
+            if (generarSlug($juego['titulo']) === $slug) {
+                // Cargamos el registro completo con descripción
+                return $this->obtenerPorId($juego['id_videojuego']);
+            }
+        }
+        return false;
+    }
+
     // Buscamos videojuegos por coincidencia en el título.
     public function buscarPorTitulo($termino) {
         $sql = "SELECT 

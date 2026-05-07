@@ -3,7 +3,7 @@
         
         <!-- Logo y copyright -->
         <div class="footer-left text-center text-md-start mb-3 mb-md-0">
-            <a href="/gamesocial/backend/controladores/feed.php" class="footer-logo d-flex align-items-center mb-1">
+            <a href="/gamesocial/inicio" class="footer-logo d-flex align-items-center mb-1">
                 <img src="/gamesocial/frontend/assets/img/gamesocial.png" alt="Logo GameSocial" class="me-2 footer-logo-img">
                 <span class="fw-bold">GameSocial</span>
             </a>
@@ -12,7 +12,7 @@
 
         <!-- Solo enlace a documentación/soporte -->
         <div class="footer-right text-center text-md-end">
-            <a href="/gamesocial/backend/controladores/contacto.php" class="footer-link">📄 Documentación</a>
+            <a href="/gamesocial/contacto" class="footer-link">📄 Documentación</a>
         </div>
     </div>
 </footer>

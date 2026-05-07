@@ -12,7 +12,7 @@ include __DIR__ . '/../partials/header.php';
     <!-- Cabecera -->
     <div class="d-flex align-items-center gap-3 mb-2 flex-wrap">
         <?php if ($es_propietario): ?>
-            <a href="listas.php" class="btn btn-secondary btn-sm">
+            <a href="/gamesocial/listas" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left me-1"></i> Mis listas
             </a>
         <?php else: ?>
@@ -25,7 +25,7 @@ include __DIR__ . '/../partials/header.php';
 
         <?php if (!$es_propietario && isset($lista['nombre_usuario'])): ?>
             <span class="small text-muted">
-                por <a href="/gamesocial/backend/controladores/perfil_publico.php?id=<?= $lista['id_usuario'] ?>"
+                por <a href="/gamesocial/usuario/<?= (int)$lista['id_usuario'] ?>"
                        class="text-purple"><?= htmlspecialchars($lista['nombre_usuario']) ?></a>
             </span>
         <?php endif; ?>
@@ -85,7 +85,7 @@ include __DIR__ . '/../partials/header.php';
                                     </button>
                                 </form>
                             <?php else: ?>
-                                <a href="/gamesocial/backend/controladores/detalle.php?id=<?= $j['id_videojuego'] ?>"
+                                <a href="/gamesocial/juego/<?= generarSlug($j['titulo']) ?>"
                                    class="btn-detalle mt-auto w-100 text-center">
                                     Ver detalle
                                 </a>
@@ -149,7 +149,7 @@ include __DIR__ . '/../partials/header.php';
                                     <input type="hidden" name="accion"        value="agregar_juego">
                                     <input type="hidden" name="id_lista"      value="<?= $lista['id_lista'] ?>">
                                     <input type="hidden" name="id_videojuego" value="<?= $v['id_videojuego'] ?>">
-                                    <input type="hidden" name="redirect"      value="listas.php?ver=<?= $lista['id_lista'] ?>">
+                                    <input type="hidden" name="redirect"      value="/gamesocial/lista/<?= $lista['id_lista'] ?>-<?= generarSlug($lista['nombre']) ?>">
                                     <button type="submit" class="btn-detalle w-100">
                                         <i class="fas fa-plus me-1"></i> Añadir
                                     </button>

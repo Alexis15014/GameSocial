@@ -6,7 +6,7 @@
  */
 
 // Imagen de respaldo cuando la portada de un juego no existe o no se encuentra
-const PLACEHOLDER_PORTADA = '../../frontend/assets/img/gamesocial.png';
+const PLACEHOLDER_PORTADA = '/gamesocial/frontend/assets/img/gamesocial.png';
 
 // Imagen de respaldo cuando el usuario no tiene foto de perfil asignada
 const PLACEHOLDER_AVATAR  = '/gamesocial/frontend/assets/img/gamesocial.png';
@@ -15,7 +15,7 @@ const PLACEHOLDER_AVATAR  = '/gamesocial/frontend/assets/img/gamesocial.png';
 // Verificamos que el archivo exista físicamente; si no, devolvemos el placeholder.
 function resolverPortada(?string $ruta_relativa): string {
     if (!empty($ruta_relativa) && file_exists(__DIR__ . '/../../' . $ruta_relativa)) {
-        return '../../' . $ruta_relativa;
+        return '/gamesocial/' . $ruta_relativa;
     }
     return PLACEHOLDER_PORTADA;
 }
@@ -24,7 +24,7 @@ function resolverPortada(?string $ruta_relativa): string {
 // Si no tiene foto asignada, devolvemos el logo de GameSocial como fallback.
 function resolverAvatar(?string $foto_perfil): string {
     if (!empty($foto_perfil)) {
-        return '/gamesocial/' . $foto_perfil;
+        return '/gamesocial/' . ltrim($foto_perfil, '/');
     }
     return PLACEHOLDER_AVATAR;
 }

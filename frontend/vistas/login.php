@@ -45,7 +45,7 @@ include __DIR__ . '/../partials/header.php';
             
             <p class="text-center text-light">
                 ¿No tienes cuenta? 
-                <a href="/gamesocial/backend/controladores/registro.php" class="gamesocial-link">Registrarse</a>
+                <a href="/gamesocial/registro" class="gamesocial-link">Registrarse</a>
             </p>
         </form>
     </div>

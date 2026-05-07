@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
     $stmt->execute($datos);
 
-    header("Location: videojuegos.php");
+    header("Location: /gamesocial/admin/videojuegos");
     exit;
 }
 
@@ -28,4 +28,4 @@ $titulo_pagina = "Añadir Nuevo Videojuego | Panel Admin";
 $videojuego    = [];
 $modo          = 'crear';
 
-require_once __DIR__ . '/../../../frontend/vistas/admin/videojuego_form.php';
+require __DIR__ . '/../../../frontend/vistas/admin/videojuego_form.php';

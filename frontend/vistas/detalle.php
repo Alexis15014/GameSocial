@@ -74,7 +74,7 @@ include __DIR__ . '/../partials/header.php';
                     $nivelClass = 'nivel-' . max(0, min(2, $nivel)); ?>
                     <div class="comentario <?= $nivelClass ?>" data-id="<?= $c['id_comentario'] ?>">
                         <div class="cabecera-comentario">
-                            <div class="usuario"><a href="/gamesocial/backend/controladores/perfil_publico.php?id=<?= $c['id_usuario'] ?>" class="nombre-usuario-link"><?= htmlspecialchars($c['nombre_usuario']) ?></a></div>
+                            <div class="usuario"><a href="/gamesocial/usuario/<?= (int)$c['id_usuario'] ?>" class="nombre-usuario-link"><?= htmlspecialchars($c['nombre_usuario']) ?></a></div>
                             <div class="meta"><?= htmlspecialchars($c['fecha_comentario']) ?></div>
                         </div>
                         <?php if(!empty($padre_nombre)): ?>
@@ -83,7 +83,7 @@ include __DIR__ . '/../partials/header.php';
                         <div class="cuerpo-comentario"><?= nl2br(htmlspecialchars($c['contenido'])) ?></div>
                         <div class="acciones-comentario">
                             <button type="button" class="btn-responder">Responder</button>
-                            <a href="/gamesocial/backend/controladores/like.php?tipo=comentario&id=<?= $c['id_comentario'] ?>" class="btn btn-sm btn-outline-danger">
+                            <a href="/gamesocial/like?tipo=comentario&id=<?= $c['id_comentario'] ?>" class="btn btn-sm btn-outline-danger">
                                 ❤️ <?= $c['likes'] ?? 0 ?>
                             </a>
                         </div>

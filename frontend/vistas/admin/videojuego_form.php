@@ -76,7 +76,7 @@
         <!-- Botones -->
         <div class="form-actions">
             <button type="submit" class="btn-guardar">Guardar</button>
-            <a href="videojuegos.php" class="btn-cancelar">Cancelar</a>
+            <a href="/gamesocial/admin/videojuegos" class="btn-cancelar">Cancelar</a>
         </div>
 
     </form>

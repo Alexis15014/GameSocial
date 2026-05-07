@@ -9,6 +9,7 @@ require_once __DIR__ . '/../config/conexion.php';
 require_once __DIR__ . '/../modelos/EstadoJuego.php';
 require_once __DIR__ . '/../helpers/auth.php';
 require_once __DIR__ . '/../helpers/imagen.php';
+require_once __DIR__ . '/../helpers/slug.php';
 
 $id_usuario = requiereLogin($conexion);
 
@@ -24,4 +25,4 @@ unset($juego);
 
 $titulo_pagina = "Mi Colección | GameSocial";
 
-require_once __DIR__ . '/../../frontend/vistas/mis_juegos.php';
+require __DIR__ . '/../../frontend/vistas/mis_juegos.php';

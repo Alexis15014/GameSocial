@@ -71,9 +71,22 @@ class Usuario{
         ]);
     }
 
+	// Obtenemos información pública de un usuario por su nombre de usuario exacto
+	public function obtenerPorNombreUsuario($nombre_usuario) {
+		$sql = "SELECT id_usuario, nombre_usuario, email, foto_perfil, biografia, 
+                       rol, estado, fecha_registro
+                FROM usuarios
+                WHERE nombre_usuario = :nombre
+                LIMIT 1";
+
+		$stmt = $this->conexion->prepare($sql);
+		$stmt->execute([':nombre' => $nombre_usuario]);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
 	// Buscar por nombre
 	public function buscarPorNombre($termino) {
-        $sql = "SELECT id_usuario, nombre_usuario, foto_perfil, biografia
+        $sql = "SELECT id_usuario, nombre_usuario, foto_perfil, biografia, rol
                 FROM usuarios
                 WHERE nombre_usuario LIKE :termino
                 LIMIT 20";

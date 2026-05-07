@@ -29,7 +29,7 @@ requiereAdmin($conexion);
 <!-- Barra de navegación del panel admin -->
 <nav class="barra-navegacion navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="marca navbar-brand d-flex align-items-center" href="/gamesocial/backend/controladores/admin/admin.php">
+        <a class="marca navbar-brand d-flex align-items-center" href="/gamesocial/admin">
             <img src="/gamesocial/frontend/assets/img/gamesocial.png" alt="Logo GameSocial" class="me-2 logo-navbar">
             Admin Panel
         </a>
@@ -42,16 +42,16 @@ requiereAdmin($conexion);
         <div class="collapse navbar-collapse" id="navbarAdmin">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/admin/admin.php">Dashboard</a>
+                    <a class="enlace-nav nav-link" href="/gamesocial/admin">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/admin/videojuegos.php">Videojuegos</a>
+                    <a class="enlace-nav nav-link" href="/gamesocial/admin/videojuegos">Videojuegos</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="enlace-nav nav-link" href="/gamesocial/backend/controladores/feed.php">
+                    <a class="enlace-nav nav-link" href="/gamesocial/inicio">
                         <i class="fas fa-sign-out-alt"></i> Salir
                     </a>
                 </li>
