@@ -8,8 +8,8 @@
 // Datos de conexión
 $servidor = "localhost";
 $base_datos = "gamesocial";
-$usuario = "root";
-$contrasena = "";
+$usuario = "gamesocialuser";
+$contrasena = "GKKDQY#15a";
 
 // Variable donde se guardará la conexión
 $conexion = null;
