@@ -101,7 +101,7 @@ class Usuario{
 
 	// Obtenemos todos los usuarios
 	public function obtenerTodos() {
-        $sql = "SELECT id_usuario, nombre_usuario, email, rol, estado, fecha_registro FROM usuarios";
+        $sql = "SELECT id_usuario, nombre_usuario, email, rol, estado, fecha_registro, foto_perfil FROM usuarios";
         return $this->conexion->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
