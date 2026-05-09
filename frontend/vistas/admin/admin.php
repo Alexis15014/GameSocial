@@ -17,7 +17,7 @@
                 <button type="submit" class="btn-busqueda">🔍</button>
 
                 <?php if (!empty($val_user)): ?>
-<img src="<?= htmlspecialchars($ruta_img) ?>"
+				<img src="<?= htmlspecialchars($ruta_img) ?>"
                              alt="<?= htmlspecialchars($u['nombre_usuario'] ?? 'Usuario') ?>"
                              class="avatar-usuario rounded-circle">
                     <a href="/gamesocial/admin" class="btn-limpiar" title="Limpiar búsqueda">✖</a>
@@ -35,12 +35,13 @@
                 <div class="d-flex align-items-center gap-3 mb-2">
                     <div class="avatar-usuario-wrapper">
                         <?php 
-    $foto = (!empty($u['foto_perfil'])) ? $u['foto_perfil'] : 'frontend/assets/img/gamesocial.png';
-?>
-
-<img src="<?= htmlspecialchars('/gamesocial/' . $foto) ?>" 
-     alt="<?= htmlspecialchars($u['nombre_usuario'] ?? 'Usuario') ?>"
-     class="avatar-usuario rounded-circle">
+                            // ARREGLO LÍNEA 33: Validación de imagen
+                            $foto = (!empty($u['foto_perfil'])) ? $u['foto_perfil'] : 'frontend/assets/img/gamesocial.png';
+                            $ruta_img = (strpos($foto, 'assets') !== false) ? '/gamesocial/' . $foto : '/gamesocial/' . $foto;
+                        ?>
+                        <img src="<?= htmlspecialchars($ruta_img) ?>" 
+                             alt="<?= htmlspecialchars($u['nombre_usuario'] ?? 'Usuario') ?>"
+                             class="avatar-usuario rounded-circle">
                     </div>
                     <div>
                         <h5 class="nombre-usuario mb-0"><?= htmlspecialchars($u['nombre_usuario'] ?? 'N/A') ?></h5>
