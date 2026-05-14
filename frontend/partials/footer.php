@@ -12,7 +12,7 @@
 
         <!-- Solo enlace a documentación/soporte -->
         <div class="footer-right text-center text-md-end">
-            <a href="/gamesocial/contacto" class="footer-link">📄 Documentación</a>
+            <a href="https://github.com/Alexis15014/GameSocial" class="footer-link">📄 Documentación</a>
         </div>
     </div>
 </footer>
