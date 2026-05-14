@@ -1,7 +1,14 @@
 Options -Indexes
 RewriteEngine On
 
+# Esto le dice que todo ocurre dentro de la carpeta gamesocial
+RewriteBase /gamesocial/
+
+# Si el archivo existe de verdad, no toques nada
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Si el archivo NO existe, entonces sí, ve al index
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
 RewriteRule ^(.*)$ index.php [QSA,L]
